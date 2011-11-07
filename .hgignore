@@ -1,0 +1,8 @@
+^sensors.so$
+
+^build
+^doc/build
+
+\#$
+\.\#
+~$
