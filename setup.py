@@ -38,8 +38,9 @@ extra_compiler_args = []
 extra_linker_args = []
 
 if COMPILER_IS_GCC:
-    extra_compiler_args.extend(('-Wall -Wextra -pedantic -std=c99 '
-                               '-fvisibility=hidden').split())
+    extra_compiler_args.extend(('-Wall -Wextra -Wno-missing-field-initializers '
+                                '-pedantic -std=c99 -fvisibility=hidden')
+                                .split())
     extra_linker_args.extend('-fvisibility=hidden'.split())
 
     if DEBUG:
