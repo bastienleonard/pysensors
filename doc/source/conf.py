@@ -13,6 +13,8 @@
 
 import sys, os
 
+ON_READ_THE_DOCS = True if 'READTHEDOCS' in os.environ else False
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -90,7 +92,9 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'pyramid'
+# Pyramid is a recent theme, use the default one locally to make sure
+# it doesn't make the build fail
+html_theme = 'pyramid' if ON_READ_THE_DOCS else 'default'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
