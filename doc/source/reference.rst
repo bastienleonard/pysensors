@@ -70,6 +70,17 @@ Functions
 
 .. function:: get_detected_chips([ChipName match])
 .. function:: get_adapter_name(tuple (bus_type, bus_nr))
+
+.. function:: init(filename)
+
+   When you import ``sensors``, libsensors will load the configuration
+   files from the default directory, which is what you want in most
+   cases. Call this function if you need to load a different
+   configuration file. Internally, it calls ``sensors_cleanup()`` and
+   then ``sensors_init()`` with your file. If the file can't be
+   opened, ``IOError`` is raised. If the initialization fails,
+   :exc:`SensorsException` is raised.
+
 .. function:: replace_parse_error_handler(handler)
 
    *handler* will be called when a parse error occurs. It will be

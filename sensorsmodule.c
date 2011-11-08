@@ -37,6 +37,7 @@
 #include "subfeature.h"
 
 
+static PyObject * init(PyObject*, PyObject*, PyObject*);
 static PyObject* cleanup(PyObject*, PyObject*);
 static PyObject* get_detected_chips(PyObject*, PyObject*, PyObject*);
 static PyObject* get_adapter_name(PyObject*, PyObject*, PyObject*);
@@ -63,6 +64,7 @@ static PyObject *py_fatal_error_handler = NULL;
 
 static PyMethodDef sensors_methods[] =
 {
+    {"init", (PyCFunction)init, METH_KEYWORDS, NULL},
     {"cleanup", cleanup, METH_NOARGS, NULL},
     {"get_detected_chips", (PyCFunction)get_detected_chips, METH_KEYWORDS,
      NULL},
@@ -468,6 +470,40 @@ PY_SENSORS_SUBFEATURE_TEMP_CRIT_ALARM);
         SENSORS_SUBFEATURE_UNKNOWN);
     PyModule_AddObject(module, "SUBFEATURE_UNKNOWN",
                        PY_SENSORS_SUBFEATURE_UNKNOWN);
+}
+
+static PyObject*
+init(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    char *kwlist[] = {"filename", NULL};
+    char *filename = NULL;
+
+    (void)self;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s", kwlist, &filename))
+    {
+        return NULL;
+    }
+
+    FILE *file = fopen(filename, "r");
+
+    if (file == NULL)
+    {
+        PyErr_SetFromErrnoWithFilename(PyExc_IOError, filename);
+        return NULL;
+    }
+
+    sensors_cleanup();
+    int status = sensors_init(file);
+    fclose(file);
+
+    if (status != 0)
+    {
+        PyErr_SetString(SensorsException, sensors_strerror(status));
+        return NULL;
+    }
+
+    Py_RETURN_NONE;
 }
 
 static PyObject*
