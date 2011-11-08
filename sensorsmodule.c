@@ -40,8 +40,11 @@
 static PyObject* cleanup(PyObject*, PyObject*);
 static PyObject* get_detected_chips(PyObject*, PyObject*, PyObject*);
 static PyObject* get_adapter_name(PyObject*, PyObject*, PyObject*);
-
 static void add_constants(PyObject *module);
+static PyObject* replace_parse_error_handler(PyObject*, PyObject*, PyObject*);
+static void c_parse_error_handler(const char*, const char*, int);
+static PyObject* replace_fatal_error_handler(PyObject*, PyObject*, PyObject*);
+static void c_fatal_error_handler(const char*, const char*);
 
 /* If someone ever compiles this on GCC < 4: you'll probably have to
  * remove the -fvisibility=hidden flags from the setup.py script to
@@ -55,6 +58,8 @@ PyMODINIT_FUNC initsensors(void);
 
 PyObject *SensorsException = NULL;
 static PyObject *py_libsensors_version = NULL;
+static PyObject *py_parse_error_handler = NULL;
+static PyObject *py_fatal_error_handler = NULL;
 
 static PyMethodDef sensors_methods[] =
 {
@@ -62,6 +67,10 @@ static PyMethodDef sensors_methods[] =
     {"get_detected_chips", (PyCFunction)get_detected_chips, METH_KEYWORDS,
      NULL},
     {"get_adapter_name", (PyCFunction)get_adapter_name, METH_KEYWORDS, NULL},
+    {"replace_parse_error_handler", (PyCFunction)replace_parse_error_handler,
+     METH_KEYWORDS, NULL},
+    {"replace_fatal_error_handler", (PyCFunction)replace_fatal_error_handler,
+     METH_KEYWORDS, NULL},
     {NULL, NULL, 0, NULL}
 };
 
@@ -548,4 +557,106 @@ get_adapter_name(PyObject *self, PyObject *args, PyObject *kwargs)
     const char *adapter_name = sensors_get_adapter_name(&bus);
 
     return PyString_FromString(adapter_name);
+}
+
+static PyObject*
+replace_parse_error_handler(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    char *kwlist[] = {"handler", NULL};
+    PyObject *func = NULL;
+
+    (void)self;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O", kwlist,
+                                     &func))
+    {
+        return NULL;
+    }
+
+    if (!PyCallable_Check(func))
+    {
+        PyErr_SetString(PyExc_TypeError,
+                        "The handler argument must be callable");
+        return NULL;
+    }
+
+    Py_XDECREF(py_parse_error_handler);
+    py_parse_error_handler = func;
+    Py_INCREF(py_parse_error_handler);
+    sensors_parse_error_wfn = c_parse_error_handler;
+
+    Py_RETURN_NONE;
+}
+
+static void c_parse_error_handler(const char *err, const char *filename,
+                                  int lineno)
+{
+    if (py_parse_error_handler == NULL)
+    {
+        if (filename != NULL)
+        {
+            fprintf(stderr, "Parse error: ``%s'', in file ``%s'', at line %d\n"
+                    "(The Python handler couldn't be called)\n", err, filename,
+                    lineno);
+        }
+        else
+        {
+            fprintf(stderr, "Parse error: ``%s''\n"
+                    "(The Python handler couldn't be called)\n", err);
+        }
+    }
+    else
+    {
+        PyObject *args = Py_BuildValue("(ssi)", err, filename, lineno);
+        PyObject_CallObject(py_parse_error_handler, args);
+    }
+}
+
+static PyObject*
+replace_fatal_error_handler(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    char *kwlist[] = {"handler", NULL};
+    PyObject *func = NULL;
+
+    (void)self;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O", kwlist,
+                                     &func))
+    {
+        return NULL;
+    }
+
+    if (!PyCallable_Check(func))
+    {
+        PyErr_SetString(PyExc_TypeError,
+                        "The handler argument must be callable");
+        return NULL;
+    }
+
+    Py_XDECREF(py_fatal_error_handler);
+    py_fatal_error_handler = func;
+    Py_INCREF(py_fatal_error_handler);
+    sensors_fatal_error = c_fatal_error_handler;
+
+    Py_RETURN_NONE;
+}
+
+static void
+c_fatal_error_handler(const char *proc, const char *err)
+{
+    if (py_fatal_error_handler == NULL)
+    {
+        fprintf(stderr, "Fatal error in `%s': %s\n"
+                "(The Python handler couldn't be called)\n", proc, err);
+        Py_Exit(EXIT_FAILURE);
+    }
+    else
+    {
+        PyObject *args = Py_BuildValue("(ss)", proc, err);
+        PyObject_CallObject(py_fatal_error_handler, args);
+
+        /* Exit the process, in case the user-defined handler didn't
+         * do it already */
+        Py_Exit(EXIT_FAILURE);
+    }
 }

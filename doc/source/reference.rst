@@ -70,6 +70,19 @@ Functions
 
 .. function:: get_detected_chips([ChipName match])
 .. function:: get_adapter_name(tuple (bus_type, bus_nr))
+.. function:: replace_parse_error_handler(handler)
+
+   *handler* will be called when a parse error occurs. It will be
+   passed three arguments: the error message, the filename and the
+   line number. In some cases the filename may be ``None``, and the
+   line number may be 0.
+
+.. function:: replace_fatal_error_handler(handler)
+
+   *handler* will be called when a fatal error occurs. It will be
+   passed two arguments: the name of the function that failed, and the
+   error message. If your function doesn't exit the process, it will
+   be done automatically when after your function returns.
 
 
 Classes
