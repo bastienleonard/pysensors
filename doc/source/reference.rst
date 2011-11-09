@@ -132,7 +132,7 @@ Classes
 
    .. method:: __repr__
 
-.. class:: SubFeature(name=None, number=0, type=0, mapping=0, flags=0)
+.. class:: Subfeature(name=None, number=0, type=0, mapping=0, flags=0)
 
    .. attribute:: name
    .. attribute:: number
@@ -146,14 +146,29 @@ Classes
 Constants
 ---------
 
+API version
+^^^^^^^^^^^
+
 .. attribute:: libsensors_version
 
    A string describing the libsensors version, e.g. ``'3.3.1'``.
 
 .. attribute:: API_VERSION
 
+   A number whose digits, in hexadecimal, represent the API
+   version. The first digit is the major version (large changes that
+   break the compatibility), the second one is for large changes, the
+   third one is for small additions.
+
+Bus numbers
+^^^^^^^^^^^
+
 .. attribute:: BUS_NR_ANY
 .. attribute:: BUS_NR_IGNORE
+
+Bus types
+^^^^^^^^^
+
 .. attribute:: BUS_TYPE_ACPI
 .. attribute:: BUS_TYPE_ANY
 .. attribute:: BUS_TYPE_HID
@@ -163,8 +178,14 @@ Constants
 .. attribute:: BUS_TYPE_SPI
 .. attribute:: BUS_TYPE_VIRTUAL
 
+Chip names wilcards
+^^^^^^^^^^^^^^^^^^^
+
 .. attribute:: CHIP_NAME_ADDR_ANY
 .. attribute:: CHIP_NAME_PREFIX_ANY
+
+Features
+^^^^^^^^
 
 .. attribute:: FEATURE_BEEP_ENABLE
 .. attribute:: FEATURE_CURR
@@ -180,10 +201,15 @@ Constants
 .. attribute:: FEATURE_UNKNOWN
 .. attribute:: FEATURE_VID
 
+Constants used in :attr:`Subfeature.flags`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. attribute:: MODE_R
 .. attribute:: MODE_W
 .. attribute:: COMPUTE_MAPPING
 
+Subfeatures
+^^^^^^^^^^^
 .. attribute:: SUBFEATURE_BEEP_ENABLE
 .. attribute:: SUBFEATURE_CURR_BEEP
 .. attribute:: SUBFEATURE_CURR_CRIT
