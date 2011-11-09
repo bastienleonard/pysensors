@@ -579,12 +579,12 @@ error:
 static PyObject*
 get_adapter_name(PyObject *self, PyObject *args, PyObject *kwargs)
 {
-    char *kwlist[] = {"bus", NULL};
+    char *kwlist[] = {"bus_type", "bus_nr", NULL};
     const sensors_bus_id bus = {-1, -1};
 
     (void)self;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "(hh)", kwlist,
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "hh", kwlist,
                                       &bus.type, &bus.nr))
     {
         return NULL;

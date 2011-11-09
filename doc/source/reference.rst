@@ -69,7 +69,9 @@ Functions
           sensors.cleanup()
 
 .. function:: get_detected_chips([ChipName match])
-.. function:: get_adapter_name(tuple (bus_type, bus_nr))
+.. function:: get_adapter_name(int bus_type, int bus_nr)
+
+   Return the name of the bus, or ``None`` if it can't be found.
 
 .. function:: init(filename)
 
