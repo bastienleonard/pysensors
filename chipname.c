@@ -44,6 +44,7 @@ static PyObject* repr(ChipName*);
 static PyObject* str(ChipName*);
 static PyObject* get_features(ChipName*, PyObject*);
 static PyObject* get_all_subfeatures(ChipName*, PyObject*, PyObject*);
+static PyObject* get_subfeature(ChipName*, PyObject*, PyObject*);
 static PyObject* get_label(ChipName*, PyObject*, PyObject*);
 static PyObject* get_value(ChipName*, PyObject*, PyObject*);
 static PyObject* set_value(ChipName*, PyObject*, PyObject*);
@@ -56,6 +57,7 @@ static PyMethodDef methods[] = {
      "Return all main features of a specific chip."},
     {"get_all_subfeatures", (PyCFunction)get_all_subfeatures, METH_KEYWORDS,
      NULL},
+    {"get_subfeature", (PyCFunction)get_subfeature, METH_KEYWORDS, NULL},
     {"get_label", (PyCFunction)get_label, METH_KEYWORDS, NULL},
     {"get_value", (PyCFunction)get_value, METH_KEYWORDS, NULL},
     {"set_value", (PyCFunction)set_value, METH_KEYWORDS, NULL},
@@ -306,6 +308,40 @@ get_all_subfeatures(ChipName *self, PyObject *args, PyObject *kwargs)
 error:
     Py_DECREF(list);
     return NULL;
+}
+
+static PyObject*
+get_subfeature(ChipName *self, PyObject *args, PyObject *kwargs)
+{
+    char *kwlist[] = {"feature", "type", NULL};
+    Feature *feature = NULL;
+    int type = -1;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O!i", kwlist,
+                                     &FeatureType, &feature, &type))
+    {
+        return NULL;
+    }
+
+    const sensors_subfeature *subfeature = sensors_get_subfeature(
+        &self->chip_name, &feature->feature, type);
+
+    if (subfeature == NULL)
+    {
+        Py_RETURN_NONE;
+    }
+
+    Subfeature *py_subfeature = PyObject_New(Subfeature, &SubfeatureType);
+
+    if (py_subfeature == NULL)
+    {
+        return NULL;
+    }
+
+    py_subfeature->subfeature = *subfeature;
+    py_subfeature->subfeature.name = strdup(subfeature->name);
+
+    return (PyObject*)py_subfeature;
 }
 
 static PyObject*

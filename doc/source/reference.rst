@@ -121,6 +121,12 @@ Classes
 
    .. method:: get_features
    .. method:: get_all_subfeatures(feature)
+   .. method:: get_subfeature(feature, int type)
+
+      Return the subfeature of *feature* that has *type*, or ``None``
+      if it can't be found. *type* should be a constant such
+      :attr:`SUBFEATURE_TEMP_INPUT`.
+
    .. method:: get_label(feature)
    .. method:: get_value(int subfeat_nr)
    .. method:: set_value(int subfeat_nr, float value)
