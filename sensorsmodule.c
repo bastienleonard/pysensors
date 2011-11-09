@@ -592,7 +592,14 @@ get_adapter_name(PyObject *self, PyObject *args, PyObject *kwargs)
 
     const char *adapter_name = sensors_get_adapter_name(&bus);
 
-    return PyString_FromString(adapter_name);
+    if (adapter_name == NULL)
+    {
+        Py_RETURN_NONE;
+    }
+    else
+    {
+        return PyString_FromString(adapter_name);
+    }
 }
 
 static PyObject*
