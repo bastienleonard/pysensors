@@ -46,15 +46,6 @@ Exceptions
       The error message returned from the libsensors API.
 
 
-
-Attributes
-----------
-
-.. attribute:: libsensors_version
-
-   A string describing the libsensors version, e.g. ``'3.3.1'``.
-
-
 Functions
 ---------
 
@@ -155,7 +146,12 @@ Classes
 Constants
 ---------
 
+.. attribute:: libsensors_version
+
+   A string describing the libsensors version, e.g. ``'3.3.1'``.
+
 .. attribute:: API_VERSION
+
 .. attribute:: BUS_NR_ANY
 .. attribute:: BUS_NR_IGNORE
 .. attribute:: BUS_TYPE_ACPI
@@ -166,9 +162,10 @@ Constants
 .. attribute:: BUS_TYPE_PCI
 .. attribute:: BUS_TYPE_SPI
 .. attribute:: BUS_TYPE_VIRTUAL
+
 .. attribute:: CHIP_NAME_ADDR_ANY
 .. attribute:: CHIP_NAME_PREFIX_ANY
-.. attribute:: COMPUTE_MAPPING
+
 .. attribute:: FEATURE_BEEP_ENABLE
 .. attribute:: FEATURE_CURR
 .. attribute:: FEATURE_ENERGY
@@ -182,8 +179,11 @@ Constants
 .. attribute:: FEATURE_TEMP
 .. attribute:: FEATURE_UNKNOWN
 .. attribute:: FEATURE_VID
+
 .. attribute:: MODE_R
 .. attribute:: MODE_W
+.. attribute:: COMPUTE_MAPPING
+
 .. attribute:: SUBFEATURE_BEEP_ENABLE
 .. attribute:: SUBFEATURE_CURR_BEEP
 .. attribute:: SUBFEATURE_CURR_CRIT

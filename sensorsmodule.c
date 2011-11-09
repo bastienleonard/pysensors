@@ -58,7 +58,6 @@ PyMODINIT_FUNC initsensors(void);
 
 
 PyObject *SensorsException = NULL;
-static PyObject *py_libsensors_version = NULL;
 static PyObject *py_parse_error_handler = NULL;
 static PyObject *py_fatal_error_handler = NULL;
 
@@ -126,8 +125,8 @@ initsensors(void)
             return;
         }
 
-        py_libsensors_version = PyString_FromString(libsensors_version);
-        PyModule_AddObject(module, "libsensors_version", py_libsensors_version);
+        PyModule_AddStringConstant(module, "LIBSENSORS_VERSION",
+                                   libsensors_version);
 
         add_constants(module);
     }
