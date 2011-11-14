@@ -94,14 +94,8 @@ Classes
 
 .. class:: ChipName(prefix=None, bus_type=0, bus_nr=0, addr=0, path=None)
 
-   .. attribute:: prefix
-   .. attribute:: bus_type
-   .. attribute:: bus_nr
-   .. attribute:: addr
-   .. attribute:: path
-
-   .. method:: __repr__
-   .. method:: __str__
+   .. describe:: repr(c)
+   .. describe:: str(c)
 
       Return a user-friendly representation of the chip name, using
       ``sensors_snprintf_chip_name()``. Note that this C function will
@@ -109,6 +103,20 @@ Classes
       :exc:`SensorsException`. Wildcards are invalid values that have
       a special meaning, for example ``None`` can be used to match any
       chip name prefix.
+
+   .. describe:: c1 == c2
+
+      Return ``True`` if the members of ``c1`` and ``c2`` are equal.
+
+   .. describe:: c1 != c2
+
+      Equivalent to ``not c1 == c2``.
+
+   .. attribute:: prefix
+   .. attribute:: bus_type
+   .. attribute:: bus_nr
+   .. attribute:: addr
+   .. attribute:: path
 
    .. method:: get_features
    .. method:: get_all_subfeatures(feature)
@@ -126,21 +134,21 @@ Classes
 
 .. class:: Feature(name=None, number=0, type=0)
 
+   .. describe:: repr(f)
+
    .. attribute:: name
    .. attribute:: number
    .. attribute:: type
 
-   .. method:: __repr__
-
 .. class:: Subfeature(name=None, number=0, type=0, mapping=0, flags=0)
+
+   .. describe:: repr(s)
 
    .. attribute:: name
    .. attribute:: number
    .. attribute:: type
    .. attribute:: mapping
    .. attribute:: flags
-
-   .. method:: __repr__
 
 
 Constants

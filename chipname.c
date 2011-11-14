@@ -42,6 +42,7 @@ static int init(ChipName*, PyObject*, PyObject*);
 static void dealloc(ChipName*);
 static PyObject* repr(ChipName*);
 static PyObject* str(ChipName*);
+static PyObject *rich_compare(ChipName*, ChipName*, int);
 static PyObject* get_prefix(ChipName*, void*);
 static int set_prefix(ChipName*, PyObject*, void*);
 static PyObject* get_path(ChipName*, void*);
@@ -111,7 +112,7 @@ PyTypeObject ChipNameType =
     "Contains the information encoded in a chip name.", /* tp_doc */
     0,		               /* tp_traverse */
     0,		               /* tp_clear */
-    0,		               /* tp_richcompare */
+    (richcmpfunc)rich_compare, /* tp_richcompare */
     0,		               /* tp_weaklistoffset */
     0,		               /* tp_iter */
     0,		               /* tp_iternext */
@@ -211,6 +212,47 @@ str(ChipName *self)
     }
 
     return PyString_FromString(buffer);
+}
+
+static PyObject*
+rich_compare(ChipName *a, ChipName *b, int op)
+{
+    if (op == Py_EQ || op == Py_NE)
+    {
+        if (! (PyObject_IsInstance((PyObject*)a, (PyObject*)&ChipNameType) &&
+               PyObject_IsInstance((PyObject*)b, (PyObject*)&ChipNameType)))
+        {
+            Py_INCREF(Py_NotImplemented);
+            return Py_NotImplemented;
+        }
+
+        sensors_chip_name *c1 = &a->chip_name;
+        sensors_chip_name *c2 = &b->chip_name;
+
+        int equal = (((c1->prefix == NULL && c2->prefix == NULL) ||
+                      strcmp(c1->prefix, c2->prefix) == 0) &&
+                     c1->bus.type == c2->bus.type &&
+                     c1->bus.nr == c2->bus.nr &&
+                     c1->addr == c2->addr &&
+                     ((c1->path == NULL && c2->path == NULL) ||
+                      strcmp(c1->path, c2->path) == 0));
+
+        int ret = op == Py_EQ ? equal : !equal;
+
+        if (ret)
+        {
+            Py_RETURN_TRUE;
+        }
+
+        Py_RETURN_FALSE;
+    }
+    else
+    {
+        PyErr_SetString(
+            PyExc_TypeError,
+            "ChipName only supports the == and != comparison operators");
+        return NULL;
+    }
 }
 
 static PyObject*
