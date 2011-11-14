@@ -49,7 +49,6 @@ static PyMethodDef methods[] = {
 
 static PyMemberDef members[] =
 {
-    /* {"name", T_STRING, offsetof(Feature, feature.name), 0, NULL}, */
     {"number", T_INT, offsetof(Feature, feature.number), 0, NULL},
     {"type", T_INT, offsetof(Feature, feature.type), 0, NULL},
     /* The two remaining members are not listed here because they are

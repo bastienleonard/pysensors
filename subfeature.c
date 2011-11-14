@@ -49,7 +49,6 @@ static PyMethodDef methods[] = {
 
 static PyMemberDef members[] =
 {
-    /* {"name", T_STRING, offsetof(Subfeature, subfeature.name), 0, NULL}, */
     {"number", T_INT, offsetof(Subfeature, subfeature.number), 0, NULL},
     {"type", T_INT, offsetof(Subfeature, subfeature.type), 0, NULL},
     {"mapping", T_INT, offsetof(Subfeature, subfeature.mapping), 0, NULL},
