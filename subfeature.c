@@ -92,8 +92,8 @@ PyTypeObject SubfeatureType =
     0,		               /* tp_weaklistoffset */
     0,		               /* tp_iter */
     0,		               /* tp_iternext */
-    (PyMethodDef*)methods,     /* tp_methods */
-    (PyMemberDef*)members,     /* tp_members */
+    methods,                   /* tp_methods */
+    members,                   /* tp_members */
     getsetters,                /* tp_getset */
     0,                         /* tp_base */
     0,                         /* tp_dict */
