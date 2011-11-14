@@ -42,6 +42,10 @@ static int init(ChipName*, PyObject*, PyObject*);
 static void dealloc(ChipName*);
 static PyObject* repr(ChipName*);
 static PyObject* str(ChipName*);
+static PyObject* get_prefix(ChipName*, void*);
+static int set_prefix(ChipName*, PyObject*, void*);
+static PyObject* get_path(ChipName*, void*);
+static int set_path(ChipName*, PyObject*, void*);
 static PyObject* get_features(ChipName*, PyObject*);
 static PyObject* get_all_subfeatures(ChipName*, PyObject*, PyObject*);
 static PyObject* get_subfeature(ChipName*, PyObject*, PyObject*);
@@ -69,12 +73,16 @@ static PyMethodDef methods[] = {
 
 static PyMemberDef members[] =
 {
-    {"prefix", T_STRING, offsetof(ChipName, chip_name.prefix), 0, NULL},
     {"bus_type", T_SHORT, offsetof(ChipName, chip_name.bus.type), 0, NULL},
     {"bus_nr", T_SHORT, offsetof(ChipName, chip_name.bus.nr), 0, NULL},
     {"addr", T_INT, offsetof(ChipName, chip_name.addr), 0, NULL},
-    {"path", T_STRING, offsetof(ChipName, chip_name.path), 0, NULL},
     {NULL, 0, 0, 0, NULL}
+};
+
+static PyGetSetDef getsetters[] = {
+    {"prefix", (getter)get_prefix, (setter)set_prefix, NULL, NULL},
+    {"path", (getter)get_path, (setter)set_path, NULL, NULL},
+    {NULL, NULL, NULL, NULL, NULL}
 };
 
 PyTypeObject ChipNameType =
@@ -109,7 +117,7 @@ PyTypeObject ChipNameType =
     0,		               /* tp_iternext */
     (PyMethodDef*)methods,     /* tp_methods */
     (PyMemberDef*)members,     /* tp_members */
-    0,                         /* tp_getset */
+    getsetters,                /* tp_getset */
     0,                         /* tp_base */
     0,                         /* tp_dict */
     0,                         /* tp_descr_get */
@@ -203,6 +211,69 @@ str(ChipName *self)
     }
 
     return PyString_FromString(buffer);
+}
+
+static PyObject*
+get_prefix(ChipName *self, void *closure)
+{
+    (void)closure;
+
+    return PyString_FromString(self->chip_name.prefix);
+}
+
+static int
+set_prefix(ChipName *self, PyObject *value, void *closure)
+{
+    (void)closure;
+
+    if (value == NULL)
+    {
+        PyErr_SetString(PyExc_TypeError, "Cannot delete the prefix attribute");
+        return -1;
+    }
+
+    if (!PyString_Check(value))
+    {
+        PyErr_SetString(PyExc_TypeError, 
+                        "The prefix attribute value must be a string");
+        return -1;
+    }
+
+    free(self->chip_name.prefix);
+    self->chip_name.prefix = strdup(PyString_AsString(value));
+
+    return 0;
+}
+
+static PyObject*
+get_path(ChipName *self, void *closure)
+{
+    (void)closure;
+    return PyString_FromString(self->chip_name.prefix);
+}
+
+static int
+set_path(ChipName *self, PyObject *value, void *closure)
+{
+    (void)closure;
+
+    if (value == NULL)
+    {
+        PyErr_SetString(PyExc_TypeError, "Cannot delete the path attribute");
+        return -1;
+    }
+
+    if (!PyString_Check(value))
+    {
+        PyErr_SetString(PyExc_TypeError, 
+                        "The path attribute value must be a string");
+        return -1;
+    }
+
+    free(self->chip_name.path);
+    self->chip_name.path = strdup(PyString_AsString(value));
+
+    return 0;
 }
 
 static PyObject*

@@ -39,6 +39,9 @@
 static int init(Subfeature*, PyObject*, PyObject*);
 static void dealloc(Subfeature*);
 static PyObject* repr(Subfeature*);
+static PyObject* get_name(Subfeature*, void*);
+static int set_name(Subfeature*, PyObject*, void*);
+
 
 static PyMethodDef methods[] = {
     {NULL, NULL, 0, NULL} 
@@ -46,12 +49,17 @@ static PyMethodDef methods[] = {
 
 static PyMemberDef members[] =
 {
-    {"name", T_STRING, offsetof(Subfeature, subfeature.name), 0, NULL},
+    /* {"name", T_STRING, offsetof(Subfeature, subfeature.name), 0, NULL}, */
     {"number", T_INT, offsetof(Subfeature, subfeature.number), 0, NULL},
     {"type", T_INT, offsetof(Subfeature, subfeature.type), 0, NULL},
     {"mapping", T_INT, offsetof(Subfeature, subfeature.mapping), 0, NULL},
     {"flags", T_UINT, offsetof(Subfeature, subfeature.flags), 0, NULL},
     {NULL, 0, 0, 0, NULL}
+};
+
+static PyGetSetDef getsetters[] = {
+    {"name", (getter)get_name, (setter)set_name, NULL, NULL},
+    {NULL, NULL, NULL, NULL, NULL}
 };
 
 PyTypeObject SubfeatureType =
@@ -86,7 +94,7 @@ PyTypeObject SubfeatureType =
     0,		               /* tp_iternext */
     (PyMethodDef*)methods,     /* tp_methods */
     (PyMemberDef*)members,     /* tp_members */
-    0,                         /* tp_getset */
+    getsetters,                /* tp_getset */
     0,                         /* tp_base */
     0,                         /* tp_dict */
     0,                         /* tp_descr_get */
@@ -144,4 +152,36 @@ repr(Subfeature *self)
                                self->subfeature.name, self->subfeature.number,
                                self->subfeature.type, self->subfeature.mapping,
                                self->subfeature.flags);
+}
+
+static PyObject*
+get_name(Subfeature *self, void *closure)
+{
+    (void)closure;
+
+    return PyString_FromString(self->subfeature.name);
+}
+
+static int
+set_name(Subfeature *self, PyObject *value, void *closure)
+{
+    (void)closure;
+
+    if (value == NULL)
+    {
+        PyErr_SetString(PyExc_TypeError, "Cannot delete the name attribute");
+        return -1;
+    }
+
+    if (!PyString_Check(value))
+    {
+        PyErr_SetString(PyExc_TypeError, 
+                        "The name attribute value must be a string");
+        return -1;
+    }
+
+    free(self->subfeature.name);
+    self->subfeature.name = strdup(PyString_AsString(value));
+
+    return 0;
 }

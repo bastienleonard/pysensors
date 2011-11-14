@@ -39,6 +39,8 @@
 static int init(Feature*, PyObject*, PyObject*);
 static void dealloc(Feature*);
 static PyObject* repr(Feature*);
+static PyObject* get_name(Feature*, void*);
+static int set_name(Feature*, PyObject*, void*);
 
 
 static PyMethodDef methods[] = {
@@ -47,12 +49,17 @@ static PyMethodDef methods[] = {
 
 static PyMemberDef members[] =
 {
-    {"name", T_STRING, offsetof(Feature, feature.name), 0, NULL},
+    /* {"name", T_STRING, offsetof(Feature, feature.name), 0, NULL}, */
     {"number", T_INT, offsetof(Feature, feature.number), 0, NULL},
     {"type", T_INT, offsetof(Feature, feature.type), 0, NULL},
     /* The two remaining members are not listed here because they are
      * for libsensors internal use only */
     {NULL, 0, 0, 0, NULL}
+};
+
+static PyGetSetDef getsetters[] = {
+    {"name", (getter)get_name, (setter)set_name, NULL, NULL},
+    {NULL, NULL, NULL, NULL, NULL}
 };
 
 PyTypeObject FeatureType =
@@ -87,7 +94,7 @@ PyTypeObject FeatureType =
     0,		               /* tp_iternext */
     (PyMethodDef*)methods,     /* tp_methods */
     (PyMemberDef*)members,     /* tp_members */
-    0,                         /* tp_getset */
+    getsetters,                /* tp_getset */
     0,                         /* tp_base */
     0,                         /* tp_dict */
     0,                         /* tp_descr_get */
@@ -140,4 +147,36 @@ repr(Feature *self)
     return PyString_FromFormat("Feature(name=%s, number=%d, type=%d)",
                                self->feature.name, self->feature.number,
                                self->feature.type);
+}
+
+static PyObject*
+get_name(Feature *self, void *closure)
+{
+    (void)closure;
+
+    return PyString_FromString(self->feature.name);
+}
+
+static int
+set_name(Feature *self, PyObject *value, void *closure)
+{
+    (void)closure;
+
+    if (value == NULL)
+    {
+        PyErr_SetString(PyExc_TypeError, "Cannot delete the name attribute");
+        return -1;
+    }
+
+    if (!PyString_Check(value))
+    {
+        PyErr_SetString(PyExc_TypeError, 
+                        "The name attribute value must be a string");
+        return -1;
+    }
+
+    free(self->feature.name);
+    self->feature.name = strdup(PyString_AsString(value));
+
+    return 0;
 }
