@@ -46,6 +46,7 @@ typedef struct
 {
     PyObject_HEAD
     sensors_feature feature;
+    PyObject *py_name;
 } Feature;
 
 #ifdef __cplusplus

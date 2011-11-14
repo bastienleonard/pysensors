@@ -46,6 +46,8 @@ typedef struct
 {
     PyObject_HEAD
     sensors_chip_name chip_name;
+    PyObject *py_prefix;
+    PyObject *py_path;
 } ChipName;
 
 #ifdef __cplusplus

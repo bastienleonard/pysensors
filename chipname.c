@@ -134,30 +134,46 @@ static int
 init(ChipName *self, PyObject *args, PyObject *kwargs)
 {
     char *kwlist[] = {"prefix", "bus_type", "bus_nr", "addr", "path", NULL};
-    const char* prefix = NULL;
-    const char* path = NULL;
+    PyObject *prefix = NULL;
+    PyObject *path = NULL;
     int addr = 0;
     short bus_type = 0;
     short bus_nr = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|shhis", kwlist,
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|ShhiS", kwlist,
                                      &prefix, &bus_type, &bus_nr, &addr, &path))
     {
         return -1;
     }
 
-    if (prefix != NULL)
+    if (prefix == NULL)
     {
-        self->chip_name.prefix = strdup(prefix);
+        self->chip_name.prefix = NULL;
+        self->py_prefix = (PyObject*)Py_None;
+        Py_INCREF(self->py_prefix);
+    }
+    else
+    {
+        self->chip_name.prefix = strdup(PyString_AsString((PyObject*)prefix));
+        self->py_prefix = prefix;
+        Py_INCREF(self->py_prefix);
     }
 
     self->chip_name.bus.type = bus_type;
     self->chip_name.bus.nr = bus_nr;
     self->chip_name.addr = addr;
 
-    if (path != NULL)
+    if (path == NULL)
     {
-        self->chip_name.path = strdup(path);
+        self->chip_name.path = NULL;
+        self->py_path = (PyObject*)Py_None;
+        Py_INCREF(self->py_path);
+    }
+    else
+    {
+        self->chip_name.path = strdup(PyString_AsString((PyObject*)path));
+        self->py_path = path;
+        Py_INCREF(self->py_path);
     }
 
     return 0;
@@ -168,8 +184,10 @@ dealloc(ChipName *self)
 {
     free(self->chip_name.prefix);
     self->chip_name.prefix = NULL;
+    Py_DECREF(self->py_prefix);
     free(self->chip_name.path);
     self->chip_name.path = NULL;
+    Py_DECREF(self->py_path);
     self->ob_type->tp_free((PyObject*)self);
 }
 
@@ -260,7 +278,9 @@ get_prefix(ChipName *self, void *closure)
 {
     (void)closure;
 
-    return PyString_FromString(self->chip_name.prefix);
+    Py_INCREF(self->py_prefix);
+
+    return self->py_prefix;
 }
 
 static int
@@ -274,15 +294,28 @@ set_prefix(ChipName *self, PyObject *value, void *closure)
         return -1;
     }
 
-    if (!PyString_Check(value))
+    if (value != Py_None && !PyString_Check(value))
     {
         PyErr_SetString(PyExc_TypeError, 
-                        "The prefix attribute value must be a string");
+                        "The prefix attribute value must be a string or None");
         return -1;
     }
 
     free(self->chip_name.prefix);
-    self->chip_name.prefix = strdup(PyString_AsString(value));
+    Py_DECREF(self->py_prefix);
+
+    if (value == Py_None)
+    {
+        self->chip_name.prefix = NULL;
+        self->py_prefix = Py_None;
+        Py_INCREF(self->py_prefix);
+    }
+    else
+    {
+        self->chip_name.prefix = strdup(PyString_AsString(value));
+        self->py_prefix = value;
+        Py_INCREF(self->py_prefix);
+    }
 
     return 0;
 }
@@ -291,7 +324,10 @@ static PyObject*
 get_path(ChipName *self, void *closure)
 {
     (void)closure;
-    return PyString_FromString(self->chip_name.prefix);
+
+    Py_INCREF(self->py_path);
+
+    return self->py_path;
 }
 
 static int
@@ -305,15 +341,28 @@ set_path(ChipName *self, PyObject *value, void *closure)
         return -1;
     }
 
-    if (!PyString_Check(value))
+    if (value != Py_None && !PyString_Check(value))
     {
         PyErr_SetString(PyExc_TypeError, 
-                        "The path attribute value must be a string");
+                        "The path attribute value must be a string or None");
         return -1;
     }
 
     free(self->chip_name.path);
-    self->chip_name.path = strdup(PyString_AsString(value));
+    Py_DECREF(self->py_path);
+
+    if (value == Py_None)
+    {
+        self->chip_name.path = NULL;
+        self->py_path = Py_None;
+        Py_INCREF(self->py_path);
+    }
+    else
+    {
+        self->chip_name.path = strdup(PyString_AsString(value));
+        self->py_path = value;
+        Py_INCREF(self->py_path);
+    }
 
     return 0;
 }
@@ -353,6 +402,7 @@ get_features(ChipName *self, PyObject *args)
              * end up freeing the same string pointer multiple
              * times. */
             py_feature->feature.name = strdup(feature->name);
+            py_feature->py_name = PyString_FromString(feature->name);
             PyList_Append(list, (PyObject*)py_feature);
             Py_DECREF(py_feature);
         }
@@ -453,6 +503,7 @@ get_subfeature(ChipName *self, PyObject *args, PyObject *kwargs)
 
     py_subfeature->subfeature = *subfeature;
     py_subfeature->subfeature.name = strdup(subfeature->name);
+    py_subfeature->py_name = PyString_FromString(subfeature->name);
 
     return (PyObject*)py_subfeature;
 }
@@ -590,14 +641,28 @@ parse_chip_name(ChipName *self, PyObject *args, PyObject *kwargs)
      */
     py_chip_name->chip_name = name;
 
-    if (py_chip_name->chip_name.prefix != NULL)
+    if (name.prefix == NULL)
+    {
+        py_chip_name->chip_name.prefix = NULL;
+        py_chip_name->py_prefix = Py_None;
+        Py_INCREF(py_chip_name->py_prefix);
+    }
+    else
     {
         py_chip_name->chip_name.prefix = strdup(name.prefix);
+        py_chip_name->py_prefix = PyString_FromString(name.prefix);
     }
 
-    if (py_chip_name->chip_name.path != NULL)
+    if (name.path == NULL)
+    {
+        py_chip_name->chip_name.path = NULL;
+        py_chip_name->py_path = Py_None;
+        Py_INCREF(py_chip_name->py_path);
+    }
+    else
     {
         py_chip_name->chip_name.path = strdup(name.path);
+        py_chip_name->py_path = PyString_FromString(name.path);
     }
 
     sensors_free_chip_name(&name);

@@ -110,21 +110,29 @@ init(Subfeature *self, PyObject *args, PyObject *kwargs)
 {
     char *kwlist[] = {"name", "number", "type", "mapping", "flags",
                       NULL};
-    const char *name = NULL;
+    PyObject *name = NULL;
     int number = 0;
     int type = 0;
     int mapping = 0;
     unsigned int flags = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|siiiI", kwlist,
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|SiiiI", kwlist,
                                      &name, &number, &type, &mapping, &flags))
     {
         return -1;
     }
 
-    if (name != NULL)
+    if (name == NULL)
     {
-        self->subfeature.name = strdup(name);
+        self->subfeature.name = NULL;
+        self->py_name = Py_None;
+        Py_INCREF(self->py_name);
+    }
+    else
+    {
+        self->subfeature.name = strdup(PyString_AsString((PyObject*)name));
+        self->py_name = name;
+        Py_INCREF(self->py_name);
     }
 
     self->subfeature.number = number;
@@ -140,6 +148,7 @@ dealloc(Subfeature *self)
 {
     free(self->subfeature.name);
     self->subfeature.name = NULL;
+    Py_DECREF(self->py_name);
     self->ob_type->tp_free((PyObject*)self);
 }
 
@@ -158,7 +167,9 @@ get_name(Subfeature *self, void *closure)
 {
     (void)closure;
 
-    return PyString_FromString(self->subfeature.name);
+    Py_INCREF(self->py_name);
+
+    return self->py_name;
 }
 
 static int
@@ -172,15 +183,27 @@ set_name(Subfeature *self, PyObject *value, void *closure)
         return -1;
     }
 
-    if (!PyString_Check(value))
+    if (value != Py_None && !PyString_Check(value))
     {
         PyErr_SetString(PyExc_TypeError, 
-                        "The name attribute value must be a string");
+                        "The name attribute value must be a string or None");
         return -1;
     }
 
     free(self->subfeature.name);
-    self->subfeature.name = strdup(PyString_AsString(value));
+
+    if (value == Py_None)
+    {
+        self->subfeature.name = NULL;
+        self->py_name = Py_None;
+        Py_INCREF(self->py_name);
+    }
+    else
+    {
+        self->subfeature.name = strdup(PyString_AsString(value));
+        self->py_name = value;
+        Py_INCREF(self->py_name);
+    }
 
     return 0;
 }

@@ -109,19 +109,27 @@ static int
 init(Feature *self, PyObject *args, PyObject *kwargs)
 {
     char *kwlist[] = {"name", "number", "type", NULL};
-    const char *name = NULL;
+    PyObject *name = NULL;
     int number = 0;
     int type = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|sii", kwlist,
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|Sii", kwlist,
                                      &name, &number, &type))
     {
         return -1;
     }
 
-    if (name != NULL)
+    if (name == NULL)
     {
-        self->feature.name = strdup(name);
+        self->feature.name = NULL;
+        self->py_name = Py_None;
+        Py_INCREF(self->py_name);
+    }
+    else
+    {
+        self->feature.name = strdup(PyString_AsString(name));
+        self->py_name = name;
+        Py_INCREF(self->py_name);
     }
 
     self->feature.number = number;
@@ -137,6 +145,7 @@ dealloc(Feature *self)
 {
     free(self->feature.name);
     self->feature.name = NULL;
+    Py_DECREF(self->py_name);
     self->ob_type->tp_free((PyObject*)self);
 }
 
@@ -153,7 +162,9 @@ get_name(Feature *self, void *closure)
 {
     (void)closure;
 
-    return PyString_FromString(self->feature.name);
+    Py_INCREF(self->py_name);
+
+    return self->py_name;
 }
 
 static int
@@ -167,7 +178,7 @@ set_name(Feature *self, PyObject *value, void *closure)
         return -1;
     }
 
-    if (!PyString_Check(value))
+    if (value != Py_None && !PyString_Check(value))
     {
         PyErr_SetString(PyExc_TypeError, 
                         "The name attribute value must be a string");
@@ -175,7 +186,20 @@ set_name(Feature *self, PyObject *value, void *closure)
     }
 
     free(self->feature.name);
-    self->feature.name = strdup(PyString_AsString(value));
+    Py_DECREF(self->py_name);
+
+    if (value == Py_None)
+    {
+        self->feature.name = NULL;
+        self->py_name = Py_None;
+        Py_INCREF(self->py_name);
+    }
+    else
+    {
+        self->feature.name = strdup(PyString_AsString(value));
+        self->py_name = value;
+        Py_INCREF(self->py_name);
+    }
 
     return 0;
 }
