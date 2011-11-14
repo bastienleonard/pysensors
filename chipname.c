@@ -42,7 +42,7 @@ static int init(ChipName*, PyObject*, PyObject*);
 static void dealloc(ChipName*);
 static PyObject* repr(ChipName*);
 static PyObject* str(ChipName*);
-static PyObject *rich_compare(ChipName*, ChipName*, int);
+static PyObject *rich_compare(PyObject*, PyObject*, int);
 static PyObject* get_prefix(ChipName*, void*);
 static int set_prefix(ChipName*, PyObject*, void*);
 static PyObject* get_path(ChipName*, void*);
@@ -112,7 +112,7 @@ PyTypeObject ChipNameType =
     "Contains the information encoded in a chip name.", /* tp_doc */
     0,		               /* tp_traverse */
     0,		               /* tp_clear */
-    (richcmpfunc)rich_compare, /* tp_richcompare */
+    rich_compare,              /* tp_richcompare */
     0,		               /* tp_weaklistoffset */
     0,		               /* tp_iter */
     0,		               /* tp_iternext */
@@ -233,19 +233,19 @@ str(ChipName *self)
 }
 
 static PyObject*
-rich_compare(ChipName *a, ChipName *b, int op)
+rich_compare(PyObject *a, PyObject *b, int op)
 {
     if (op == Py_EQ || op == Py_NE)
     {
-        if (! (PyObject_IsInstance((PyObject*)a, (PyObject*)&ChipNameType) &&
-               PyObject_IsInstance((PyObject*)b, (PyObject*)&ChipNameType)))
+        if (! (PyObject_IsInstance(a, (PyObject*)&ChipNameType) &&
+               PyObject_IsInstance(b, (PyObject*)&ChipNameType)))
         {
             Py_INCREF(Py_NotImplemented);
             return Py_NotImplemented;
         }
 
-        sensors_chip_name *c1 = &a->chip_name;
-        sensors_chip_name *c2 = &b->chip_name;
+        sensors_chip_name *c1 = &((ChipName*)a)->chip_name;
+        sensors_chip_name *c2 = &((ChipName*)b)->chip_name;
 
         int equal = (((c1->prefix == NULL && c2->prefix == NULL) ||
                       strcmp(c1->prefix, c2->prefix) == 0) &&

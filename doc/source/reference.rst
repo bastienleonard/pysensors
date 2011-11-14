@@ -135,6 +135,13 @@ Classes
 .. class:: Feature(name=None, number=0, type=0)
 
    .. describe:: repr(f)
+   .. describe:: f1 == f2
+
+      Return ``True`` if the members of ``f1`` and ``f2`` are equal.
+
+   .. describe:: f1 != f2
+
+      Equivalent to ``not f1 == f2``.
 
    .. attribute:: name
    .. attribute:: number
@@ -143,6 +150,14 @@ Classes
 .. class:: Subfeature(name=None, number=0, type=0, mapping=0, flags=0)
 
    .. describe:: repr(s)
+   .. describe:: s1 == s2
+
+      Return ``True`` if the members of ``s1`` and ``s2`` are equal.
+
+   .. describe:: s1 != s2
+
+      Equivalent to ``not s1 == s2``.
+
 
    .. attribute:: name
    .. attribute:: number

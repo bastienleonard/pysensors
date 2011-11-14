@@ -39,6 +39,7 @@
 static int init(Subfeature*, PyObject*, PyObject*);
 static void dealloc(Subfeature*);
 static PyObject* repr(Subfeature*);
+static PyObject* rich_compare(PyObject*, PyObject*, int);
 static PyObject* get_name(Subfeature*, void*);
 static int set_name(Subfeature*, PyObject*, void*);
 
@@ -87,7 +88,7 @@ PyTypeObject SubfeatureType =
     0,                          /* tp_doc */
     0,		               /* tp_traverse */
     0,		               /* tp_clear */
-    0,		               /* tp_richcompare */
+    rich_compare,              /* tp_richcompare */
     0,		               /* tp_weaklistoffset */
     0,		               /* tp_iter */
     0,		               /* tp_iternext */
@@ -167,6 +168,47 @@ repr(Subfeature *self)
                                name, self->subfeature.number,
                                self->subfeature.type, self->subfeature.mapping,
                                self->subfeature.flags);
+}
+
+static PyObject*
+rich_compare(PyObject *a, PyObject *b, int op)
+{
+    if (op == Py_EQ || op == Py_NE)
+    {
+        if (! (PyObject_IsInstance(a, (PyObject*)&SubfeatureType) &&
+               PyObject_IsInstance(b, (PyObject*)&SubfeatureType)))
+        {
+            Py_INCREF(Py_NotImplemented);
+            return Py_NotImplemented;
+        }
+
+        sensors_subfeature *s1 = &((Subfeature*)a)->subfeature;
+        sensors_subfeature *s2 = &((Subfeature*)b)->subfeature;
+
+        int equal = (((s1->name == NULL && s2->name == NULL) ||
+                      strcmp(s1->name, s2->name) == 0) &&
+                     s1->number == s2->number &&
+                     s1->type == s2->type &&
+                     s1->mapping == s2->mapping &&
+                     s1->flags == s2->flags);
+
+        int ret = op == Py_EQ ? equal : !equal;
+
+        if (ret)
+        {
+            Py_RETURN_TRUE;
+        }
+
+        Py_RETURN_FALSE;
+    }
+    else
+    {
+        PyErr_SetString(
+            PyExc_TypeError,
+            "ChipName only supports the == and != comparison operators");
+        return NULL;
+    }
+
 }
 
 static PyObject*

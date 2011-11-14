@@ -21,5 +21,33 @@ class TestChipName(unittest.TestCase):
                           sensors.get_detected_chips()):
             self.assertEqual(c1, c2)
 
+
+class TestFeature(unittest.TestCase):
+    def test_equals(self):
+        feature = sensors.Feature()
+        self.assertEqual(feature, feature)
+        self.assertEqual(sensors.Feature(), sensors.Feature())
+        c = sensors.get_detected_chips()[0]
+
+        for feature in c.get_features():
+            self.assertEqual(feature, feature)
+
+        for f1, f2 in zip(c.get_features(), c.get_features()):
+            self.assertEqual(f1, f2)
+
+
+class TestSubfeature(unittest.TestCase):
+    def test_equals(self):
+        subfeature = sensors.Subfeature()
+        self.assertEqual(subfeature, subfeature)
+        self.assertEqual(sensors.Subfeature(), sensors.Subfeature())
+
+        c = sensors.get_detected_chips()[0]
+        subfeatures = c.get_all_subfeatures(c.get_features()[0])
+
+        for s1, s2 in zip(subfeatures, list(subfeatures)):
+            self.assertEqual(s1, s2)
+
+
 if __name__ == '__main__':
     unittest.main()

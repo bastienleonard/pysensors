@@ -39,6 +39,7 @@
 static int init(Feature*, PyObject*, PyObject*);
 static void dealloc(Feature*);
 static PyObject* repr(Feature*);
+static PyObject* rich_compare(PyObject*, PyObject*, int);
 static PyObject* get_name(Feature*, void*);
 static int set_name(Feature*, PyObject*, void*);
 
@@ -87,7 +88,7 @@ PyTypeObject FeatureType =
     "Data about a single chip feature (or category leader).", /* tp_doc */
     0,		               /* tp_traverse */
     0,		               /* tp_clear */
-    0,		               /* tp_richcompare */
+    rich_compare,              /* tp_richcompare */
     0,		               /* tp_weaklistoffset */
     0,		               /* tp_iter */
     0,		               /* tp_iternext */
@@ -163,6 +164,45 @@ repr(Feature *self)
                                name, self->feature.number,
                                self->feature.type);
 }
+
+static PyObject*
+rich_compare(PyObject *a, PyObject *b, int op)
+{
+    if (op == Py_EQ || op == Py_NE)
+    {
+        if (! (PyObject_IsInstance(a, (PyObject*)&FeatureType) &&
+               PyObject_IsInstance(b, (PyObject*)&FeatureType)))
+        {
+            Py_INCREF(Py_NotImplemented);
+            return Py_NotImplemented;
+        }
+
+        sensors_feature *f1 = &((Feature*)a)->feature;
+        sensors_feature *f2 = &((Feature*)b)->feature;
+
+        int equal = (((f1->name == NULL && f2->name == NULL) ||
+                      strcmp(f1->name, f2->name) == 0) &&
+                     f1->number == f2->number &&
+                     f1->type == f2->type);
+
+        int ret = op == Py_EQ ? equal : !equal;
+
+        if (ret)
+        {
+            Py_RETURN_TRUE;
+        }
+
+        Py_RETURN_FALSE;
+    }
+    else
+    {
+        PyErr_SetString(
+            PyExc_TypeError,
+            "Feature only supports the == and != comparison operators");
+        return NULL;
+    }
+}
+
 
 static PyObject*
 get_name(Feature *self, void *closure)
