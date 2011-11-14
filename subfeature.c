@@ -155,9 +155,16 @@ dealloc(Subfeature *self)
 static PyObject*
 repr(Subfeature *self)
 {
+    const char *name = self->subfeature.name;
+
+    if (name == NULL)
+    {
+        name = "None";
+    }
+
     return PyString_FromFormat("SubFeature(name=%s, number=%d, type=%d, "
                                "mapping=%d, flags=%u)",
-                               self->subfeature.name, self->subfeature.number,
+                               name, self->subfeature.number,
                                self->subfeature.type, self->subfeature.mapping,
                                self->subfeature.flags);
 }

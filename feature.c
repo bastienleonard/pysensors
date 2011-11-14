@@ -152,8 +152,15 @@ dealloc(Feature *self)
 static PyObject*
 repr(Feature *self)
 {
+    const char *name = self->feature.name;
+
+    if (name == NULL)
+    {
+        name = "None";
+    }
+
     return PyString_FromFormat("Feature(name=%s, number=%d, type=%d)",
-                               self->feature.name, self->feature.number,
+                               name, self->feature.number,
                                self->feature.type);
 }
 
