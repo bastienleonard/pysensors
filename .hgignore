@@ -1,4 +1,4 @@
-^sensors.so$
+^.*\.so$
 
 ^build
 ^doc/build
