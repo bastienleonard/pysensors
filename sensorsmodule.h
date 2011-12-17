@@ -30,6 +30,28 @@
 #ifndef H_SENSORS_MODULE
 #define H_SENSORS_MODULE
 
+#if PY_MAJOR_VERSION >= 3
+#define IS_PY3K
+#endif
+
+#ifndef IS_PY3K
+#define INIT_TYPE_HEAD PyObject_HEAD_INIT(NULL) 0,
+#else
+#define INIT_TYPE_HEAD PyVarObject_HEAD_INIT(NULL, 0)
+#endif
+
+#ifndef IS_PY3K
+#define FREE_OBJECT(o) o->ob_type->tp_free((PyObject*)o)
+#else
+#define FREE_OBJECT(o) Py_TYPE(o)->tp_free((PyObject*)o)
+#endif
+
+#ifdef IS_PY3K
+#define PyString_FromString PyUnicode_FromString
+#define PyString_FromFormat PyUnicode_FromFormat
+#define PyString_Check PyUnicode_Check
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

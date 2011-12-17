@@ -32,10 +32,16 @@
 #include <sensors/error.h>
 #include <sensors/sensors.h>
 
+#include "sensorsmodule.h"
 #include "chipname.h"
 #include "feature.h"
 #include "subfeature.h"
 
+#ifdef IS_PY3K
+#define INIT_ERROR return NULL
+#else
+#define INIT_ERROR return
+#endif
 
 static PyObject * init(PyObject*, PyObject*, PyObject*);
 static PyObject* cleanup(PyObject*, PyObject*);
@@ -54,7 +60,11 @@ static void c_fatal_error_handler(const char*, const char*);
 #if __GNUC__ >= 4
 __attribute__((__visibility__("default")))
 #endif
+#ifndef IS_PY3K
 PyMODINIT_FUNC initsensors(void);
+#else
+PyMODINIT_FUNC PyInit_sensors(void);
+#endif
 
 
 PyObject *SensorsException = NULL;
@@ -63,21 +73,38 @@ static PyObject *py_fatal_error_handler = NULL;
 
 static PyMethodDef sensors_methods[] =
 {
-    {"init", (PyCFunction)init, METH_KEYWORDS, NULL},
+    {"init", (PyCFunction)init, METH_VARARGS | METH_KEYWORDS, NULL},
     {"cleanup", cleanup, METH_NOARGS, NULL},
-    {"get_detected_chips", (PyCFunction)get_detected_chips, METH_KEYWORDS,
-     NULL},
-    {"get_adapter_name", (PyCFunction)get_adapter_name, METH_KEYWORDS, NULL},
+    {"get_detected_chips", (PyCFunction)get_detected_chips,
+     METH_VARARGS | METH_KEYWORDS, NULL},
+    {"get_adapter_name", (PyCFunction)get_adapter_name,
+     METH_VARARGS | METH_KEYWORDS, NULL},
     {"replace_parse_error_handler", (PyCFunction)replace_parse_error_handler,
-     METH_KEYWORDS, NULL},
+     METH_VARARGS | METH_KEYWORDS, NULL},
     {"replace_fatal_error_handler", (PyCFunction)replace_fatal_error_handler,
-     METH_KEYWORDS, NULL},
+     METH_VARARGS | METH_KEYWORDS, NULL},
     {NULL, NULL, 0, NULL}
 };
 
+#ifdef IS_PY3K
+static struct PyModuleDef module_def =
+{
+   PyModuleDef_HEAD_INIT,
+   "sensors",   /* name of module */
+   NULL, /* module documentation, may be NULL */
+   -1,       /* size of per-interpreter state of the module,
+                or -1 if the module keeps state in global variables. */
+   sensors_methods
+};
+#endif
+
 
 PyMODINIT_FUNC
+#ifndef IS_PY3K
 initsensors(void)
+#else
+PyInit_sensors(void)
+#endif
 {
     PyObject *module = NULL;
 
@@ -90,12 +117,16 @@ initsensors(void)
         PyType_Ready(&SubfeatureType))
     {
         PyErr_SetString(PyExc_ImportError, "One or more PyType_Ready() failed");
-        return;
+        INIT_ERROR;
     }
 
+#ifdef IS_PY3K
+    module = PyModule_Create(&module_def);
+#else
     module = Py_InitModule3(
         "sensors", sensors_methods,
         "Python binding for the lm_sensors API (libsensors)");
+#endif
 
     if (module != NULL)
     {
@@ -122,7 +153,7 @@ initsensors(void)
         if (status != 0)
         {
             PyErr_SetString(PyExc_ImportError, sensors_strerror(status));
-            return;
+            INIT_ERROR;
         }
 
         PyModule_AddStringConstant(module, "LIBSENSORS_VERSION",
@@ -130,6 +161,10 @@ initsensors(void)
 
         add_constants(module);
     }
+
+#ifdef IS_PY3K
+    return module;
+#endif
 }
 
 static void add_constants(PyObject *module)

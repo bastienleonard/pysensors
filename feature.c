@@ -34,6 +34,7 @@
 
 #include "sensorsmodule.h"
 #include "feature.h"
+#include "utils.h"
 
 
 static int init(Feature*, PyObject*, PyObject*);
@@ -64,8 +65,7 @@ static PyGetSetDef getsetters[] = {
 
 PyTypeObject FeatureType =
 {
-    PyObject_HEAD_INIT(NULL)
-    0,                         /*ob_size*/
+    INIT_TYPE_HEAD
     "sensors.Feature",         /*tp_name*/
     sizeof(Feature),           /*tp_basicsize*/
     0,                         /*tp_itemsize*/
@@ -128,7 +128,13 @@ init(Feature *self, PyObject *args, PyObject *kwargs)
     }
     else
     {
-        self->feature.name = strdup(PyString_AsString(name));
+        self->feature.name = pystrdup(name);
+
+        if (self->feature.name == NULL)
+        {
+            return -1;
+        }
+
         self->py_name = name;
         Py_INCREF(self->py_name);
     }
@@ -147,7 +153,7 @@ dealloc(Feature *self)
     free(self->feature.name);
     self->feature.name = NULL;
     Py_DECREF(self->py_name);
-    self->ob_type->tp_free((PyObject*)self);
+    FREE_OBJECT(self);
 }
 
 static PyObject*
@@ -243,7 +249,13 @@ set_name(Feature *self, PyObject *value, void *closure)
     }
     else
     {
-        self->feature.name = strdup(PyString_AsString(value));
+        self->feature.name = pystrdup(value);
+
+        if (self->feature.name == NULL)
+        {
+            return -1;
+        }
+
         self->py_name = value;
         Py_INCREF(self->py_name);
     }

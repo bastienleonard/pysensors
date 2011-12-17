@@ -37,6 +37,8 @@
 #include "chipname.h"
 #include "feature.h"
 #include "subfeature.h"
+#include "utils.h"
+
 
 static int init(ChipName*, PyObject*, PyObject*);
 static void dealloc(ChipName*);
@@ -60,15 +62,17 @@ static PyObject* parse_chip_name(ChipName*, PyObject*, PyObject*);
 static PyMethodDef methods[] = {
     {"get_features", (PyCFunction)get_features, METH_NOARGS,
      "Return all main features of a specific chip."},
-    {"get_all_subfeatures", (PyCFunction)get_all_subfeatures, METH_KEYWORDS,
+    {"get_all_subfeatures", (PyCFunction)get_all_subfeatures,
+     METH_VARARGS | METH_KEYWORDS,
      NULL},
-    {"get_subfeature", (PyCFunction)get_subfeature, METH_KEYWORDS, NULL},
-    {"get_label", (PyCFunction)get_label, METH_KEYWORDS, NULL},
-    {"get_value", (PyCFunction)get_value, METH_KEYWORDS, NULL},
-    {"set_value", (PyCFunction)set_value, METH_KEYWORDS, NULL},
+    {"get_subfeature", (PyCFunction)get_subfeature,
+     METH_VARARGS | METH_KEYWORDS, NULL},
+    {"get_label", (PyCFunction)get_label, METH_VARARGS | METH_KEYWORDS, NULL},
+    {"get_value", (PyCFunction)get_value, METH_VARARGS | METH_KEYWORDS, NULL},
+    {"set_value", (PyCFunction)set_value, METH_VARARGS | METH_KEYWORDS, NULL},
     {"do_chip_set", (PyCFunction)do_chip_sets, METH_NOARGS, NULL},
     {"parse_chip_name", (PyCFunction)parse_chip_name,
-     METH_KEYWORDS | METH_STATIC, NULL},
+     METH_VARARGS | METH_KEYWORDS | METH_STATIC, NULL},
     {NULL, NULL, 0, NULL}
 };
 
@@ -88,8 +92,7 @@ static PyGetSetDef getsetters[] = {
 
 PyTypeObject ChipNameType =
 {
-    PyObject_HEAD_INIT(NULL)
-    0,                         /*ob_size*/
+    INIT_TYPE_HEAD
     "sensors.ChipName",        /*tp_name*/
     sizeof(ChipName),          /*tp_basicsize*/
     0,                         /*tp_itemsize*/
@@ -136,11 +139,18 @@ init(ChipName *self, PyObject *args, PyObject *kwargs)
     char *kwlist[] = {"prefix", "bus_type", "bus_nr", "addr", "path", NULL};
     PyObject *prefix = NULL;
     PyObject *path = NULL;
+    const char *format = NULL;
     int addr = 0;
     short bus_type = 0;
     short bus_nr = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|ShhiS", kwlist,
+#ifndef IS_PY3K
+    format = "|ShhiS";
+#else
+    format = "|UhhiU";
+#endif
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, format, kwlist,
                                      &prefix, &bus_type, &bus_nr, &addr, &path))
     {
         return -1;
@@ -154,7 +164,13 @@ init(ChipName *self, PyObject *args, PyObject *kwargs)
     }
     else
     {
-        self->chip_name.prefix = strdup(PyString_AsString((PyObject*)prefix));
+        self->chip_name.prefix = pystrdup(prefix);
+
+        if (self->chip_name.prefix == NULL)
+        {
+            return -1;
+        }
+
         self->py_prefix = prefix;
         Py_INCREF(self->py_prefix);
     }
@@ -171,7 +187,13 @@ init(ChipName *self, PyObject *args, PyObject *kwargs)
     }
     else
     {
-        self->chip_name.path = strdup(PyString_AsString((PyObject*)path));
+        self->chip_name.path = pystrdup(path);
+
+        if (self->chip_name.path == NULL)
+        {
+            return -1;
+        }
+
         self->py_path = path;
         Py_INCREF(self->py_path);
     }
@@ -188,7 +210,7 @@ dealloc(ChipName *self)
     free(self->chip_name.path);
     self->chip_name.path = NULL;
     Py_DECREF(self->py_path);
-    self->ob_type->tp_free((PyObject*)self);
+    FREE_OBJECT(self);
 }
 
 static PyObject*
@@ -312,7 +334,13 @@ set_prefix(ChipName *self, PyObject *value, void *closure)
     }
     else
     {
-        self->chip_name.prefix = strdup(PyString_AsString(value));
+        self->chip_name.prefix = pystrdup(value);
+
+        if (self->chip_name.prefix == NULL)
+        {
+            return -1;
+        }
+
         self->py_prefix = value;
         Py_INCREF(self->py_prefix);
     }
@@ -359,7 +387,13 @@ set_path(ChipName *self, PyObject *value, void *closure)
     }
     else
     {
-        self->chip_name.path = strdup(PyString_AsString(value));
+        self->chip_name.path = pystrdup(value);
+
+        if (self->chip_name.path == NULL)
+        {
+            return -1;
+        }
+
         self->py_path = value;
         Py_INCREF(self->py_path);
     }

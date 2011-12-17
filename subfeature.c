@@ -34,6 +34,7 @@
 
 #include "sensorsmodule.h"
 #include "subfeature.h"
+#include "utils.h"
 
 
 static int init(Subfeature*, PyObject*, PyObject*);
@@ -64,8 +65,7 @@ static PyGetSetDef getsetters[] = {
 
 PyTypeObject SubfeatureType =
 {
-    PyObject_HEAD_INIT(NULL)
-    0,                         /*ob_size*/
+    INIT_TYPE_HEAD
     "sensors.Subfeature",         /*tp_name*/
     sizeof(Subfeature),           /*tp_basicsize*/
     0,                         /*tp_itemsize*/
@@ -112,12 +112,19 @@ init(Subfeature *self, PyObject *args, PyObject *kwargs)
     char *kwlist[] = {"name", "number", "type", "mapping", "flags",
                       NULL};
     PyObject *name = NULL;
+    const char *format = NULL;
     int number = 0;
     int type = 0;
     int mapping = 0;
     unsigned int flags = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|SiiiI", kwlist,
+#ifndef IS_PY3K
+    format = "|SiiiI";
+#else
+    format = "|UiiiI";
+#endif
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, format, kwlist,
                                      &name, &number, &type, &mapping, &flags))
     {
         return -1;
@@ -131,7 +138,13 @@ init(Subfeature *self, PyObject *args, PyObject *kwargs)
     }
     else
     {
-        self->subfeature.name = strdup(PyString_AsString((PyObject*)name));
+        self->subfeature.name = pystrdup(name);
+
+        if (self->subfeature.name == NULL)
+        {
+            return -1;
+        }
+
         self->py_name = name;
         Py_INCREF(self->py_name);
     }
@@ -150,7 +163,7 @@ dealloc(Subfeature *self)
     free(self->subfeature.name);
     self->subfeature.name = NULL;
     Py_DECREF(self->py_name);
-    self->ob_type->tp_free((PyObject*)self);
+    FREE_OBJECT(self);
 }
 
 static PyObject*
@@ -249,7 +262,13 @@ set_name(Subfeature *self, PyObject *value, void *closure)
     }
     else
     {
-        self->subfeature.name = strdup(PyString_AsString(value));
+        self->subfeature.name = pystrdup(value);
+
+        if (self->subfeature.name == NULL)
+        {
+            return -1;
+        }
+
         self->py_name = value;
         Py_INCREF(self->py_name);
     }

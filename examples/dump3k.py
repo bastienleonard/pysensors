@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Copyright 2011 Bastien Léonard. All rights reserved.
@@ -27,33 +28,30 @@
 # OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-from distutils.core import setup, Extension
-import distutils.ccompiler
+import sys
+
+import sensors
 
 
-COMPILER_IS_GCC = True
-DEBUG = False
+def print_stuff():
+    for chip in sensors.get_detected_chips():
+        print(chip)
 
-extra_compiler_args = []
-extra_linker_args = []
+        for feature in chip.get_features():
+            print('  {0}'.format(chip.get_label(feature)))
 
-if COMPILER_IS_GCC:
-    extra_compiler_args.extend(('-Wall -Wextra -Wno-missing-field-initializers '
-                                '-pedantic -std=c99 -fvisibility=hidden')
-                                .split())
-    extra_linker_args.extend('-fvisibility=hidden'.split())
+            for subfeature in chip.get_all_subfeatures(feature):
+                print('    {0}'.format(subfeature,
+                                       chip.get_value(subfeature.number)))
 
-    if DEBUG:
-        extra_compiler_args.extend('-g -ggdb'.split())
+            print()
 
-module = Extension('sensors',
-                   sources = ['sensorsmodule.c', 'chipname.c', 'feature.c',
-                              'subfeature.c', 'utils.c'],
-                   libraries=['sensors'],
-                   extra_compile_args=extra_compiler_args,
-                   extra_link_args=extra_linker_args)
+def main():
+    print_stuff()
 
-setup(name = 'sensors',
-      version = '0.1',
-      description = 'Python binding for libsensors',
-      ext_modules = [module])
+
+if __name__ == '__main__':
+    try:
+        main()
+    finally:
+        sensors.cleanup()
