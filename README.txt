@@ -4,8 +4,8 @@ pySensors
 This binding allows you to easily access the lm_sensors features from
 your Python programs, so that you can get or set information such as
 the speed of the fans or hardware temperature on Linux systems. This
-is actually a binding for libsensors, the C API from the `lm_sensors
-<http://lm-sensors.org>`_ project.
+is actually a binding for libsensors, the C API from the lm_sensors
+project (http://lm-sensors.org).
 
 You can read the documentation online here: http://pysensors.readthedocs.org/
 
