@@ -54,6 +54,7 @@ Contents:
 
    building
    reference
+   implementation
 
 Indices and tables
 ==================
