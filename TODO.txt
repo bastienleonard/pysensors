@@ -1,0 +1,6 @@
+Store module globals in the new interpreter structure for Python 3.
+
+Maybe add support for cycles detection.
+
+Complete the documentation, and add it to the Python objects to make
+them available through introspection.
