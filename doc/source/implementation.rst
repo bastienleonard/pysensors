@@ -28,20 +28,17 @@
    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-Building the module
-===================
+Implementation
+==============
 
-Use this command to create the module in the working directory::
+The binding is written in C, mainly because I wanted to learn the
+CPython API. I might rewrite it with Cython someday, if it becomes too
+difficult to maintain.
 
-   python2 setup.py build_ext --inplace
 
-Without ``--inplace``, the module is placed in the build directory.
+Python 3
+--------
 
-Of course, you should use ``python3`` instead of ``python2`` if you're
-building the module for Python 3. I'm using explicit versions instead
-of simply using ``python``, because on Arch Linux, and possibly other
-GNU/Linux distributions, ``python`` is the Python 3 interpreter. It's
-a good practice to use explicit major version numbers.
-
-You can use ``python setup.py install`` to install the module in the
-standard Python directory for libraries.
+The binding can be built for Python 3. The ``dump3k.py`` file contains
+a Python 3 example. I expect the binding to contain bugs for Python 3,
+feel free to report any issue you encounter.
