@@ -111,10 +111,17 @@ init(Feature *self, PyObject *args, PyObject *kwargs)
 {
     char *kwlist[] = {"name", "number", "type", NULL};
     PyObject *name = NULL;
+    const char *format = NULL;
     int number = 0;
     int type = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|Sii", kwlist,
+#ifndef IS_PY3K
+    format = "|Sii";
+#else
+    format = "|Uii";
+#endif
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, format, kwlist,
                                      &name, &number, &type))
     {
         return -1;
