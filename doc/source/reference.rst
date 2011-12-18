@@ -60,6 +60,11 @@ Functions
           sensors.cleanup()
 
 .. function:: get_detected_chips([ChipName match])
+
+   Return a list of :class:`ChipName` for all the detected chips
+   matching the chip name. If *match* isn't provided, all the detected
+   chips are returned.
+
 .. function:: get_adapter_name(int bus_type, int bus_nr)
 
    Return the name of the bus, or ``None`` if it can't be found.
@@ -123,16 +128,38 @@ Classes
    .. method:: get_subfeature(feature, int type)
 
       Return the subfeature of *feature* that has *type*, or ``None``
-      if it can't be found. *type* should be a constant such
-      :attr:`SUBFEATURE_TEMP_INPUT`.
+      if it can't be found. *type* should be a constant such as
+      :attr:`SUBFEATURE_TEMP_INPUT`, see :ref:`subfeatures-constants`.
 
    .. method:: get_label(feature)
+
+      Return the label of the given feature. The chip shouldn't contain wilcard
+      values.
+
    .. method:: get_value(int subfeat_nr)
+
+      Return the value of a subfeature for the chip, as a
+      ``float``. The chip shouldn't contain wildcard values.
+
    .. method:: set_value(int subfeat_nr, float value)
+
+      Set a value of the chip. The chip shouldn't contain wildcard
+      values.
+
    .. method:: do_chip_sets
+
+      Execute all set statements for the chip. The chip may contain
+      contain wildcards.
+
    .. staticmethod:: parse_chip_name(str orig_name)
 
+      Return a :class:`ChipName` object corresponding to the chip name
+      represented by *orig_name*.
+
+
 .. class:: Feature(name=None, number=0, type=0)
+
+   You can think of features as categories for :class:`Subfeature` objects.
 
    .. describe:: repr(f)
    .. describe:: f1 == f2
@@ -160,10 +187,32 @@ Classes
 
 
    .. attribute:: name
+
+      Used to refer to the feature in config files.
+
    .. attribute:: number
+
+      Internal subfeature number, used throughout the API to refer to
+      the subfeature.
+
    .. attribute:: type
+
+      Subfeature type.
+
    .. attribute:: mapping
+
+      Number of the main :class:`Feature` this subfeature belongs
+      to. For example, subfeatures :attr:`SUBFEATURE_FAN_INPUT`,
+      :attr:`SUBFEATURE_FAN_MIN`, :attr:`SUBFEATURE_FAN_DIV` and
+      :attr:`SUBFEATURE_FAN_ALARM` are mapped to main feature
+      :attr:`FEATURE_FAN`.
+
    .. attribute:: flags
+
+      This is a bitfield, its value is a combination of :attr:`MODE_R`
+      (readable), :attr:`MODE_W` (writable) and
+      :attr:`COMPUTE_MAPPING` (affected by the computation rules of
+      the main feature).
 
 
 Constants
@@ -207,6 +256,8 @@ Chip names wilcards
 .. attribute:: CHIP_NAME_ADDR_ANY
 .. attribute:: CHIP_NAME_PREFIX_ANY
 
+.. _features-constants:
+
 Features
 ^^^^^^^^
 
@@ -231,6 +282,8 @@ Constants used in :attr:`Subfeature.flags`
 .. attribute:: MODE_W
 .. attribute:: COMPUTE_MAPPING
 
+.. _subfeatures-constants:
+
 Subfeatures
 ^^^^^^^^^^^
 .. attribute:: SUBFEATURE_BEEP_ENABLE
@@ -245,6 +298,7 @@ Subfeatures
 .. attribute:: SUBFEATURE_CURR_MIN
 .. attribute:: SUBFEATURE_CURR_MIN_ALARM
 .. attribute:: SUBFEATURE_ENERGY_INPUT
+.. attribute:: SUBFEATURE_FAN_ALARM
 .. attribute:: SUBFEATURE_FAN_BEEP
 .. attribute:: SUBFEATURE_FAN_DIV
 .. attribute:: SUBFEATURE_FAN_FAULT
