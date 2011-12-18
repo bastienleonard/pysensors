@@ -234,6 +234,8 @@ static void add_constants(PyObject *module)
                             SENSORS_SUBFEATURE_FAN_INPUT);
     PyModule_AddIntConstant(module, "SUBFEATURE_FAN_MIN",
                             SENSORS_SUBFEATURE_FAN_MIN);
+    PyModule_AddIntConstant(module, "SUBFEATURE_FAN_ALARM",
+                            SENSORS_SUBFEATURE_FAN_ALARM);
     PyModule_AddIntConstant(module, "SUBFEATURE_FAN_FAULT",
                             SENSORS_SUBFEATURE_FAN_FAULT);
     PyModule_AddIntConstant(module, "SUBFEATURE_FAN_DIV",
