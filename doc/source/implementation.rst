@@ -42,3 +42,4 @@ Python 3
 The binding can be built for Python 3. The ``dump3k.py`` file contains
 a Python 3 example. I expect the binding to contain bugs for Python 3,
 feel free to report any issue you encounter.
+Python strings are encoded to UTF-8 before they are used at the C level.
