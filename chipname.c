@@ -60,19 +60,30 @@ static PyObject* parse_chip_name(ChipName*, PyObject*, PyObject*);
 
 
 static PyMethodDef methods[] = {
-    {"get_features", (PyCFunction)get_features, METH_NOARGS,
-     "Return all main features of a specific chip."},
+    {"get_features", (PyCFunction)get_features, METH_NOARGS, NULL},
     {"get_all_subfeatures", (PyCFunction)get_all_subfeatures,
-     METH_VARARGS | METH_KEYWORDS,
-     NULL},
-    {"get_subfeature", (PyCFunction)get_subfeature,
      METH_VARARGS | METH_KEYWORDS, NULL},
-    {"get_label", (PyCFunction)get_label, METH_VARARGS | METH_KEYWORDS, NULL},
-    {"get_value", (PyCFunction)get_value, METH_VARARGS | METH_KEYWORDS, NULL},
-    {"set_value", (PyCFunction)set_value, METH_VARARGS | METH_KEYWORDS, NULL},
-    {"do_chip_set", (PyCFunction)do_chip_sets, METH_NOARGS, NULL},
+    {"get_subfeature", (PyCFunction)get_subfeature,
+     METH_VARARGS | METH_KEYWORDS,
+     "Return the subfeature of feature that has type, or None"
+     " if it can't be found. type should be a constant such as"
+     " SUBFEATURE_TEMP_INPUT."},
+    {"get_label", (PyCFunction)get_label, METH_VARARGS | METH_KEYWORDS,
+     "Return the label of the given feature. The chip shouldn't contain wilcard"
+     " values."},
+    {"get_value", (PyCFunction)get_value, METH_VARARGS | METH_KEYWORDS,
+     "Return the value of a subfeature for the chip, as a"
+     " float. The chip shouldn't contain wildcard values."},
+    {"set_value", (PyCFunction)set_value, METH_VARARGS | METH_KEYWORDS,
+     "Set a value of the chip. The chip shouldn't contain wildcard"
+     " values."},
+    {"do_chip_set", (PyCFunction)do_chip_sets, METH_NOARGS,
+     "Execute all set statements for the chip. The chip may contain"
+     " contain wildcards."},
     {"parse_chip_name", (PyCFunction)parse_chip_name,
-     METH_VARARGS | METH_KEYWORDS | METH_STATIC, NULL},
+     METH_VARARGS | METH_KEYWORDS | METH_STATIC,
+     "Return a ChipName object corresponding to the chip name"
+     " represented by orig_name."},
     {NULL, NULL, 0, NULL}
 };
 
@@ -112,7 +123,13 @@ PyTypeObject ChipNameType =
     0,                         /*tp_setattro*/
     0,                         /*tp_as_buffer*/
     Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,        /*tp_flags*/
-    "Contains the information encoded in a chip name.", /* tp_doc */
+    "str(chip_name)"
+    " returns a user-friendly representation of the chip name, using"
+    " sensors_snprintf_chip_name(). Note that this C function will"
+    " fail when ``wildcards'' are used, and __str__() will raise"
+    " SensorsException. Wildcards are invalid values that have"
+    " a special meaning, for example None can be used to match any"
+    " chip name prefix.", /* tp_doc */
     0,		               /* tp_traverse */
     0,		               /* tp_clear */
     rich_compare,              /* tp_richcompare */
