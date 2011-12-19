@@ -73,16 +73,41 @@ static PyObject *py_fatal_error_handler = NULL;
 
 static PyMethodDef sensors_methods[] =
 {
-    {"init", (PyCFunction)init, METH_VARARGS | METH_KEYWORDS, NULL},
-    {"cleanup", cleanup, METH_NOARGS, NULL},
+    {"init", (PyCFunction)init, METH_VARARGS | METH_KEYWORDS,
+     "When you import sensors, libsensors will load the configuration"
+     " files from the default directory, which is what you want in most"
+     " cases. Call this function if you need to load a different"
+     " configuration file. Internally, it calls sensors_cleanup() and"
+     " then sensors_init() with your file. If the file can't be"
+     " opened, IOError is raised. If the initialization fails,"
+     " SensorsException is raised."},
+    {"cleanup", cleanup, METH_NOARGS,
+     "You have to call this function when you don't need the module"
+     " anymore. Use a try/finally block to make sure it's called:\n\n"
+     "try:\n"
+     "    main()\n"
+     "finally:\n"
+     "    sensors.cleanup()"},
     {"get_detected_chips", (PyCFunction)get_detected_chips,
-     METH_VARARGS | METH_KEYWORDS, NULL},
+     METH_VARARGS | METH_KEYWORDS,
+     "Return a list of ChipName for all the detected chips"
+     " matching the chip name. If match isn't provided, all the detected"
+     " chips are returned."},
     {"get_adapter_name", (PyCFunction)get_adapter_name,
-     METH_VARARGS | METH_KEYWORDS, NULL},
+     METH_VARARGS | METH_KEYWORDS,
+     "Return the name of the bus, or None if it can't be found."},
     {"replace_parse_error_handler", (PyCFunction)replace_parse_error_handler,
-     METH_VARARGS | METH_KEYWORDS, NULL},
+     METH_VARARGS | METH_KEYWORDS,
+     "handler will be called when a parse error occurs. It will be"
+     " passed three arguments: the error message, the filename and the"
+     " line number. In some cases the filename may be None, and the"
+     " line number may be 0."},
     {"replace_fatal_error_handler", (PyCFunction)replace_fatal_error_handler,
-     METH_VARARGS | METH_KEYWORDS, NULL},
+     METH_VARARGS | METH_KEYWORDS,
+     "handler will be called when a fatal error occurs. It will be"
+     " passed two arguments: the name of the function that failed, and the"
+     " error message. If your function doesn't exit the process, it will"
+     " be done automatically when after your function returns."},
     {NULL, NULL, 0, NULL}
 };
 
@@ -132,7 +157,9 @@ PyInit_sensors(void)
     {
         SensorsException = PyErr_NewExceptionWithDoc(
             "sensors.SensorsException",
-            "Raised when an error occurs in the sensors module.",
+            "Raised when an error occurs. This normally means that a libsensors"
+            " function call failed. The message attribute contains the error"
+            " message returned from the libsensors API.",
             NULL, NULL);
         Py_INCREF(SensorsException);
         PyModule_AddObject(module, "SensorsException", SensorsException);

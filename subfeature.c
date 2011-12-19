@@ -51,15 +51,28 @@ static PyMethodDef methods[] = {
 
 static PyMemberDef members[] =
 {
-    {"number", T_INT, offsetof(Subfeature, subfeature.number), 0, NULL},
-    {"type", T_INT, offsetof(Subfeature, subfeature.type), 0, NULL},
-    {"mapping", T_INT, offsetof(Subfeature, subfeature.mapping), 0, NULL},
-    {"flags", T_UINT, offsetof(Subfeature, subfeature.flags), 0, NULL},
+    {"number", T_INT, offsetof(Subfeature, subfeature.number), 0,
+     "Internal subfeature number, used throughout the API to refer to"
+     " the subfeature."},
+    {"type", T_INT, offsetof(Subfeature, subfeature.type), 0,
+     "Subfeature type."},
+    {"mapping", T_INT, offsetof(Subfeature, subfeature.mapping), 0,
+     "Number of the main Feature this subfeature belongs"
+     " to. For example, subfeatures SUBFEATURE_FAN_INPUT,"
+     " SUBFEATURE_FAN_MIN, SUBFEATURE_FAN_DIV and"
+     " SUBFEATURE_FAN_ALARM are mapped to main feature"
+     " FEATURE_FAN."},
+    {"flags", T_UINT, offsetof(Subfeature, subfeature.flags), 0,
+     "This is a bitfield, its value is a combination of MODE_R"
+     " (readable), MODE_W (writable) and"
+     " COMPUTE_MAPPING (affected by the computation rules of"
+     " the main feature)."},
     {NULL, 0, 0, 0, NULL}
 };
 
 static PyGetSetDef getsetters[] = {
-    {"name", (getter)get_name, (setter)set_name, NULL, NULL},
+    {"name", (getter)get_name, (setter)set_name,
+     "Used to refer to the feature in config files.", NULL},
     {NULL, NULL, NULL, NULL, NULL}
 };
 
