@@ -185,7 +185,6 @@ PyInit_sensors(void)
 
         PyModule_AddStringConstant(module, "LIBSENSORS_VERSION",
                                    libsensors_version);
-
         add_constants(module);
     }
 

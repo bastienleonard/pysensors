@@ -221,7 +221,7 @@ Constants
 API version
 ^^^^^^^^^^^
 
-.. attribute:: libsensors_version
+.. attribute:: LIBSENSORS_VERSION
 
    A string describing the libsensors version, e.g. ``'3.3.1'``.
 
