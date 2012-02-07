@@ -14,6 +14,13 @@ The source code and the issue tracker can be found here:
 https://bitbucket.org/bastienleonard/pysensors
 
 
+Name clash
+----------
+
+Someone has created another binding called PySensors:
+https://bitbucket.org/blackjack/pysensors/
+From the look of it, it seems more pythonic and incomplete.
+
 Python 3 support
 ----------------
 
