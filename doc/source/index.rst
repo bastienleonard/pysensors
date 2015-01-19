@@ -1,4 +1,4 @@
-.. Copyright 2011 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2015 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -42,7 +42,7 @@ you can get or set information such as the speed of the fans or
 hardware temperature on Linux systems. This is actually a binding for
 libsensors, the C API from the lm_sensors project.
 
-Currently, only Python 2 is supported.
+Python 3 is supported but still experimental.
 
 Go to the project's page on Bitbucket to get the source, report issues
 and more: https://bitbucket.org/bastienleonard/pysensors
