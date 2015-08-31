@@ -11,7 +11,7 @@ You can read the documentation online here:
 http://pysensors.readthedocs.org/
 
 The source code and the issue tracker can be found here:
-https://bitbucket.org/bastienleonard/pysensors
+https://github.com/bastienleonard/pysensors
 
 
 Name clash
