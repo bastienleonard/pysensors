@@ -1,4 +1,4 @@
-.. Copyright 2011 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2015 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -26,6 +26,18 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS DOCUMENTATION,
    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+Dependencies
+============
+
+You will need to install the lm_sensors library first.
+
+* Archlinux: install the `lm_sensors
+  <https://www.archlinux.org/packages/?name=lm_sensors>`_ package.
+* Debian/Ubuntu: install the libsensors4-dev package.
+
+Feel free to give me the instructions for other distributions!
 
 
 Building the module
