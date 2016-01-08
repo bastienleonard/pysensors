@@ -94,7 +94,7 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 # Pyramid is a recent theme, use the default one locally to make sure
 # it doesn't make the build fail
-html_theme = 'pyramid' if ON_READ_THE_DOCS else 'default'
+html_theme = 'pyramid'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
