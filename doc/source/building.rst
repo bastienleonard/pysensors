@@ -36,6 +36,7 @@ You will need to install the lm_sensors library first.
 * Archlinux: install the `lm_sensors
   <https://www.archlinux.org/packages/?name=lm_sensors>`_ package.
 * Debian/Ubuntu: install the libsensors4-dev package.
+* Fedora: install the lm_sensors-devel and lm_sensors packages.
 
 Feel free to give me the instructions for other distributions!
 
