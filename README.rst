@@ -8,7 +8,7 @@ is actually a binding for libsensors, the C API from the lm_sensors
 project (http://lm-sensors.org).
 
 You can read the documentation online here:
-http://pysensors.readthedocs.org/
+https://bastienleonard.github.io/pysensors
 
 The source code and the issue tracker can be found here:
 https://github.com/bastienleonard/pysensors

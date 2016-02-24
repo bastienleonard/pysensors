@@ -1,4 +1,4 @@
-.. Copyright 2011, 2015 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2015, 2016 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -44,8 +44,8 @@ libsensors, the C API from the lm_sensors project.
 
 Python 3 is supported but still experimental.
 
-Go to the project's page on Bitbucket to get the source, report issues
-and more: https://bitbucket.org/bastienleonard/pysensors
+Go to the project's page to get the source, report issues and more:
+https://github.com/bastienleonard/pysensors
 
 Contents:
 
