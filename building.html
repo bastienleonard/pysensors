@@ -65,13 +65,14 @@
 <ul class="simple">
 <li>Archlinux: install the <a class="reference external" href="https://www.archlinux.org/packages/?name=lm_sensors">lm_sensors</a> package.</li>
 <li>Debian/Ubuntu: install the libsensors4-dev package.</li>
+<li>Fedora: install the lm_sensors-devel and lm_sensors packages.</li>
 </ul>
 <p>Feel free to give me the instructions for other distributions!</p>
 </div>
 <div class="section" id="building-the-module">
 <h1>Building the module<a class="headerlink" href="#building-the-module" title="Permalink to this headline">¶</a></h1>
 <p>Use this command to create the module in the working directory:</p>
-<div class="highlight-python"><div class="highlight"><pre>python2 setup.py build_ext --inplace
+<div class="highlight-python"><div class="highlight"><pre><span></span>python2 setup.py build_ext --inplace
 </pre></div>
 </div>
 <p>Without <code class="docutils literal"><span class="pre">--inplace</span></code>, the module is placed in the build directory.</p>
@@ -139,7 +140,7 @@ standard Python directory for libraries.</p>
     </div>
     <div class="footer" role="contentinfo">
         &copy; Copyright 2011, Bastien Léonard.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.5.
     </div>
   </body>
 </html>
