@@ -1,5 +1,5 @@
 /*
- * Copyright 2011 Bastien Léonard. All rights reserved.
+ * Copyright 2011, 2021 Bastien Léonard. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -54,6 +54,7 @@ static PyObject* get_all_subfeatures(ChipName*, PyObject*, PyObject*);
 static PyObject* get_subfeature(ChipName*, PyObject*, PyObject*);
 static PyObject* get_label(ChipName*, PyObject*, PyObject*);
 static PyObject* get_value(ChipName*, PyObject*, PyObject*);
+static PyObject* get_value_or_none(ChipName*, PyObject*, PyObject*);
 static PyObject* set_value(ChipName*, PyObject*, PyObject*);
 static PyObject* do_chip_sets(ChipName*, PyObject*);
 static PyObject* parse_chip_name(ChipName*, PyObject*, PyObject*);
@@ -74,6 +75,12 @@ static PyMethodDef methods[] = {
     {"get_value", (PyCFunction)get_value, METH_VARARGS | METH_KEYWORDS,
      "Return the value of a subfeature for the chip, as a"
      " float. The chip shouldn't contain wildcard values."},
+    {"get_value_or_none",
+     (PyCFunction)get_value_or_none,
+     METH_VARARGS | METH_KEYWORDS,
+     "Return the value of a subfeature for the chip as a"
+     " float, or None if an error occurred. "
+     "The chip shouldn't contain wildcard values."},
     {"set_value", (PyCFunction)set_value, METH_VARARGS | METH_KEYWORDS,
      "Set a value of the chip. The chip shouldn't contain wildcard"
      " values."},
@@ -607,6 +614,37 @@ get_value(ChipName *self, PyObject *args, PyObject *kwargs)
     }
 
     return PyFloat_FromDouble(value);
+}
+
+static PyObject*
+get_value_or_none(ChipName *self, PyObject *args, PyObject *kwargs)
+{
+    char *kwlist[] = {"subfeat_nr", NULL};
+    int subfeat_nr = -1;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i", kwlist, &subfeat_nr))
+    {
+        return NULL;
+    }
+
+    PyObject *value = get_value(self, args, kwargs);
+
+    if (value == NULL)
+    {
+        if (PyErr_ExceptionMatches(SensorsException))
+        {
+            PyErr_Clear();
+            Py_RETURN_NONE;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
+    else
+    {
+        return value;
+    }
 }
 
 static PyObject*

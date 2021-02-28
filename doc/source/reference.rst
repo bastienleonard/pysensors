@@ -1,4 +1,4 @@
-.. Copyright 2011 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2021 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -140,6 +140,11 @@ Classes
 
       Return the value of a subfeature for the chip, as a
       ``float``. The chip shouldn't contain wildcard values.
+
+   .. method:: get_value_or_none(int subfeat_nr)
+
+      Return the value of a subfeature for the chip as a ``float``, or ``None``
+      if an error occurred. The chip shouldn't contain wildcard values.
 
    .. method:: set_value(int subfeat_nr, float value)
 
