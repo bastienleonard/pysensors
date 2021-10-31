@@ -1,4 +1,4 @@
-.. Copyright 2011, 2015 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2015, 2021 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -46,15 +46,9 @@ Building the module
 
 Use this command to create the module in the working directory::
 
-   python2 setup.py build_ext --inplace
+   python setup.py build_ext --inplace
 
 Without ``--inplace``, the module is placed in the build directory.
-
-Of course, you should use ``python3`` instead of ``python2`` if you're
-building the module for Python 3. I'm using explicit versions instead
-of simply using ``python``, because on Arch Linux, and possibly other
-GNU/Linux distributions, ``python`` is the Python 3 interpreter. It's
-a good practice to use explicit major version numbers.
 
 You can use ``python setup.py install`` to install the module in the
 standard Python directory for libraries.

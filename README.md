@@ -20,9 +20,3 @@ Name clash
 Someone has created another binding called PySensors:
 https://bitbucket.org/blackjack/pysensors/
 From the look of it, it seems more pythonic and incomplete.
-
-Python 3 support
-----------------
-
-The binding has been recently adapted to Python 3. Feedback is
-welcome.
