@@ -1,4 +1,4 @@
-.. Copyright 2011 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2021 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -34,12 +34,3 @@ Implementation
 The binding is written in C, mainly because I wanted to learn the
 CPython API. I might rewrite it with Cython someday, if it becomes too
 difficult to maintain.
-
-
-Python 3
---------
-
-The binding can be built for Python 3. The ``dump3k.py`` file contains
-a Python 3 example. I expect the binding to contain bugs for Python 3,
-feel free to report any issue you encounter.
-Python strings are encoded to UTF-8 before they are used at the C level.

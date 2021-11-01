@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Reference &#8212; pySensors 0.1 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -49,29 +50,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-sensors">
+  <section id="module-sensors">
 <span id="reference"></span><h1>Reference<a class="headerlink" href="#module-sensors" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="exceptions">
+<section id="exceptions">
 <h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
 <dl class="py exception">
-<dt id="sensors.SensorsException">
-<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SensorsException</span></code><a class="headerlink" href="#sensors.SensorsException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SensorsException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SensorsException</span></span><a class="headerlink" href="#sensors.SensorsException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raised when an error occurs. This normally means that a libsensors
 function call failed.</p>
 <dl class="py attribute">
-<dt id="sensors.SensorsException.message">
-<code class="sig-name descname"><span class="pre">message</span></code><a class="headerlink" href="#sensors.SensorsException.message" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SensorsException.message">
+<span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#sensors.SensorsException.message" title="Permalink to this definition">¶</a></dt>
 <dd><p>The error message returned from the libsensors API.</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="functions">
+</section>
+<section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="sensors.cleanup">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">cleanup</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.cleanup" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.cleanup">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">cleanup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.cleanup" title="Permalink to this definition">¶</a></dt>
 <dd><p>You have to call this function when you don’t need the module
 anymore. Use a <code class="docutils literal notranslate"><span class="pre">try</span></code>/<code class="docutils literal notranslate"><span class="pre">finally</span></code> block to make sure it’s called:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -83,22 +84,22 @@ anymore. Use a <code class="docutils literal notranslate"><span class="pre">try<
 </dd></dl>
 
 <dl class="py function">
-<dt id="sensors.get_detected_chips">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">get_detected_chips</span></code><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">ChipName</span> <span class="pre">match</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.get_detected_chips" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.get_detected_chips">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">get_detected_chips</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="pre">ChipName</span> <span class="pre">match</span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.get_detected_chips" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of <a class="reference internal" href="#sensors.ChipName" title="sensors.ChipName"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChipName</span></code></a> for all the detected chips
 matching the chip name. If <em>match</em> isn’t provided, all the detected
 chips are returned.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sensors.get_adapter_name">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">get_adapter_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">bus_type</span></em>, <em class="sig-param"><span class="pre">int</span> <span class="pre">bus_nr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.get_adapter_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.get_adapter_name">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">get_adapter_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">bus_type</span></em>, <em class="sig-param"><span class="pre">int</span> <span class="pre">bus_nr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.get_adapter_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the name of the bus, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if it can’t be found.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sensors.init">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.init" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.init">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.init" title="Permalink to this definition">¶</a></dt>
 <dd><p>When you import <code class="docutils literal notranslate"><span class="pre">sensors</span></code>, libsensors will load the configuration
 files from the default directory, which is what you want in most
 cases. Call this function if you need to load a different
@@ -109,8 +110,8 @@ opened, <code class="docutils literal notranslate"><span class="pre">IOError</sp
 </dd></dl>
 
 <dl class="py function">
-<dt id="sensors.replace_parse_error_handler">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">replace_parse_error_handler</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.replace_parse_error_handler" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.replace_parse_error_handler">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">replace_parse_error_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.replace_parse_error_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>handler</em> will be called when a parse error occurs. It will be
 passed three arguments: the error message, the filename and the
 line number. In some cases the filename may be <code class="docutils literal notranslate"><span class="pre">None</span></code>, and the
@@ -118,28 +119,28 @@ line number may be 0.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="sensors.replace_fatal_error_handler">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">replace_fatal_error_handler</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.replace_fatal_error_handler" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.replace_fatal_error_handler">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">replace_fatal_error_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.replace_fatal_error_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>handler</em> will be called when a fatal error occurs. It will be
 passed two arguments: the name of the function that failed, and the
 error message. If your function doesn’t exit the process, it will
 be done automatically when after your function returns.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="classes">
+</section>
+<section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="sensors.ChipName">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">ChipName</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bus_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bus_nr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">ChipName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bus_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bus_nr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">repr(c)</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">repr(c)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">str(c)</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">str(c)</span></span></dt>
 <dd><p>Return a user-friendly representation of the chip name, using
 <code class="docutils literal notranslate"><span class="pre">sensors_snprintf_chip_name()</span></code>. Note that this C function will
 fail when “wildcards” are used, and __str__() will raise
@@ -149,98 +150,98 @@ chip name prefix.</p>
 </dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">c1</span> <span class="pre">==</span> <span class="pre">c2</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">c1</span> <span class="pre">==</span> <span class="pre">c2</span></span></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the members of <code class="docutils literal notranslate"><span class="pre">c1</span></code> and <code class="docutils literal notranslate"><span class="pre">c2</span></code> are equal.</p>
 </dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">c1</span> <span class="pre">!=</span> <span class="pre">c2</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">c1</span> <span class="pre">!=</span> <span class="pre">c2</span></span></dt>
 <dd><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">c1</span> <span class="pre">==</span> <span class="pre">c2</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.ChipName.prefix">
-<code class="sig-name descname"><span class="pre">prefix</span></code><a class="headerlink" href="#sensors.ChipName.prefix" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.prefix">
+<span class="sig-name descname"><span class="pre">prefix</span></span><a class="headerlink" href="#sensors.ChipName.prefix" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.ChipName.bus_type">
-<code class="sig-name descname"><span class="pre">bus_type</span></code><a class="headerlink" href="#sensors.ChipName.bus_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.bus_type">
+<span class="sig-name descname"><span class="pre">bus_type</span></span><a class="headerlink" href="#sensors.ChipName.bus_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.ChipName.bus_nr">
-<code class="sig-name descname"><span class="pre">bus_nr</span></code><a class="headerlink" href="#sensors.ChipName.bus_nr" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.bus_nr">
+<span class="sig-name descname"><span class="pre">bus_nr</span></span><a class="headerlink" href="#sensors.ChipName.bus_nr" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.ChipName.addr">
-<code class="sig-name descname"><span class="pre">addr</span></code><a class="headerlink" href="#sensors.ChipName.addr" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.addr">
+<span class="sig-name descname"><span class="pre">addr</span></span><a class="headerlink" href="#sensors.ChipName.addr" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.ChipName.path">
-<code class="sig-name descname"><span class="pre">path</span></code><a class="headerlink" href="#sensors.ChipName.path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.path">
+<span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#sensors.ChipName.path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.get_features">
-<code class="sig-name descname"><span class="pre">get_features</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_features" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.get_features">
+<span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_features" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.get_all_subfeatures">
-<code class="sig-name descname"><span class="pre">get_all_subfeatures</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_all_subfeatures" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.get_all_subfeatures">
+<span class="sig-name descname"><span class="pre">get_all_subfeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_all_subfeatures" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.get_subfeature">
-<code class="sig-name descname"><span class="pre">get_subfeature</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">feature</span></em>, <em class="sig-param"><span class="pre">int</span> <span class="pre">type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_subfeature" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.get_subfeature">
+<span class="sig-name descname"><span class="pre">get_subfeature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">feature</span></em>, <em class="sig-param"><span class="pre">int</span> <span class="pre">type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_subfeature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the subfeature of <em>feature</em> that has <em>type</em>, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
 if it can’t be found. <em>type</em> should be a constant such as
 <a class="reference internal" href="#sensors.SUBFEATURE_TEMP_INPUT" title="sensors.SUBFEATURE_TEMP_INPUT"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBFEATURE_TEMP_INPUT</span></code></a>, see <a class="reference internal" href="#subfeatures-constants"><span class="std std-ref">Subfeatures</span></a>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.get_label">
-<code class="sig-name descname"><span class="pre">get_label</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_label" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.get_label">
+<span class="sig-name descname"><span class="pre">get_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the label of the given feature. The chip shouldn’t contain wilcard
 values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.get_value">
-<code class="sig-name descname"><span class="pre">get_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">subfeat_nr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">subfeat_nr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the value of a subfeature for the chip, as a
 <code class="docutils literal notranslate"><span class="pre">float</span></code>. The chip shouldn’t contain wildcard values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.get_value_or_none">
-<code class="sig-name descname"><span class="pre">get_value_or_none</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">subfeat_nr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_value_or_none" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.get_value_or_none">
+<span class="sig-name descname"><span class="pre">get_value_or_none</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">subfeat_nr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.get_value_or_none" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the value of a subfeature for the chip as a <code class="docutils literal notranslate"><span class="pre">float</span></code>, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
 if an error occurred. The chip shouldn’t contain wildcard values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.set_value">
-<code class="sig-name descname"><span class="pre">set_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">subfeat_nr</span></em>, <em class="sig-param"><span class="pre">float</span> <span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.set_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">int</span> <span class="pre">subfeat_nr</span></em>, <em class="sig-param"><span class="pre">float</span> <span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.set_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set a value of the chip. The chip shouldn’t contain wildcard
 values.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.do_chip_sets">
-<code class="sig-name descname"><span class="pre">do_chip_sets</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.do_chip_sets" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.do_chip_sets">
+<span class="sig-name descname"><span class="pre">do_chip_sets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.do_chip_sets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute all set statements for the chip. The chip may contain
 contain wildcards.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sensors.ChipName.parse_chip_name">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">parse_chip_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">str</span> <span class="pre">orig_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.parse_chip_name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.ChipName.parse_chip_name">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">parse_chip_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">str</span> <span class="pre">orig_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.ChipName.parse_chip_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a <a class="reference internal" href="#sensors.ChipName" title="sensors.ChipName"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChipName</span></code></a> object corresponding to the chip name
 represented by <em>orig_name</em>.</p>
 </dd></dl>
@@ -248,85 +249,85 @@ represented by <em>orig_name</em>.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sensors.Feature">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">Feature</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.Feature" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Feature">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">Feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.Feature" title="Permalink to this definition">¶</a></dt>
 <dd><p>You can think of features as categories for <a class="reference internal" href="#sensors.Subfeature" title="sensors.Subfeature"><code class="xref py py-class docutils literal notranslate"><span class="pre">Subfeature</span></code></a> objects.</p>
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">repr(f)</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">repr(f)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">f1</span> <span class="pre">==</span> <span class="pre">f2</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">f1</span> <span class="pre">==</span> <span class="pre">f2</span></span></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the members of <code class="docutils literal notranslate"><span class="pre">f1</span></code> and <code class="docutils literal notranslate"><span class="pre">f2</span></code> are equal.</p>
 </dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">f1</span> <span class="pre">!=</span> <span class="pre">f2</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">f1</span> <span class="pre">!=</span> <span class="pre">f2</span></span></dt>
 <dd><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">f1</span> <span class="pre">==</span> <span class="pre">f2</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Feature.name">
-<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#sensors.Feature.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Feature.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#sensors.Feature.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Feature.number">
-<code class="sig-name descname"><span class="pre">number</span></code><a class="headerlink" href="#sensors.Feature.number" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Feature.number">
+<span class="sig-name descname"><span class="pre">number</span></span><a class="headerlink" href="#sensors.Feature.number" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Feature.type">
-<code class="sig-name descname"><span class="pre">type</span></code><a class="headerlink" href="#sensors.Feature.type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Feature.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#sensors.Feature.type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="sensors.Subfeature">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">Subfeature</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.Subfeature" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Subfeature">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">Subfeature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sensors.Subfeature" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">repr(s)</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">repr(s)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">s1</span> <span class="pre">==</span> <span class="pre">s2</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">s1</span> <span class="pre">==</span> <span class="pre">s2</span></span></dt>
 <dd><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the members of <code class="docutils literal notranslate"><span class="pre">s1</span></code> and <code class="docutils literal notranslate"><span class="pre">s2</span></code> are equal.</p>
 </dd></dl>
 
 <dl class="describe">
-<dt>
-<code class="sig-name descname"><span class="pre">s1</span> <span class="pre">!=</span> <span class="pre">s2</span></code></dt>
+<dt class="sig sig-object">
+<span class="sig-name descname"><span class="pre">s1</span> <span class="pre">!=</span> <span class="pre">s2</span></span></dt>
 <dd><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">s1</span> <span class="pre">==</span> <span class="pre">s2</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Subfeature.name">
-<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#sensors.Subfeature.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Subfeature.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#sensors.Subfeature.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to refer to the feature in config files.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Subfeature.number">
-<code class="sig-name descname"><span class="pre">number</span></code><a class="headerlink" href="#sensors.Subfeature.number" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Subfeature.number">
+<span class="sig-name descname"><span class="pre">number</span></span><a class="headerlink" href="#sensors.Subfeature.number" title="Permalink to this definition">¶</a></dt>
 <dd><p>Internal subfeature number, used throughout the API to refer to
 the subfeature.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Subfeature.type">
-<code class="sig-name descname"><span class="pre">type</span></code><a class="headerlink" href="#sensors.Subfeature.type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Subfeature.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#sensors.Subfeature.type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subfeature type.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Subfeature.mapping">
-<code class="sig-name descname"><span class="pre">mapping</span></code><a class="headerlink" href="#sensors.Subfeature.mapping" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Subfeature.mapping">
+<span class="sig-name descname"><span class="pre">mapping</span></span><a class="headerlink" href="#sensors.Subfeature.mapping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of the main <a class="reference internal" href="#sensors.Feature" title="sensors.Feature"><code class="xref py py-class docutils literal notranslate"><span class="pre">Feature</span></code></a> this subfeature belongs
 to. For example, subfeatures <a class="reference internal" href="#sensors.SUBFEATURE_FAN_INPUT" title="sensors.SUBFEATURE_FAN_INPUT"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBFEATURE_FAN_INPUT</span></code></a>,
 <a class="reference internal" href="#sensors.SUBFEATURE_FAN_MIN" title="sensors.SUBFEATURE_FAN_MIN"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBFEATURE_FAN_MIN</span></code></a>, <a class="reference internal" href="#sensors.SUBFEATURE_FAN_DIV" title="sensors.SUBFEATURE_FAN_DIV"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SUBFEATURE_FAN_DIV</span></code></a> and
@@ -335,8 +336,8 @@ to. For example, subfeatures <a class="reference internal" href="#sensors.SUBFEA
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.Subfeature.flags">
-<code class="sig-name descname"><span class="pre">flags</span></code><a class="headerlink" href="#sensors.Subfeature.flags" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.Subfeature.flags">
+<span class="sig-name descname"><span class="pre">flags</span></span><a class="headerlink" href="#sensors.Subfeature.flags" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is a bitfield, its value is a combination of <a class="reference internal" href="#sensors.MODE_R" title="sensors.MODE_R"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MODE_R</span></code></a>
 (readable), <a class="reference internal" href="#sensors.MODE_W" title="sensors.MODE_W"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MODE_W</span></code></a> (writable) and
 <a class="reference internal" href="#sensors.COMPUTE_MAPPING" title="sensors.COMPUTE_MAPPING"><code class="xref py py-attr docutils literal notranslate"><span class="pre">COMPUTE_MAPPING</span></code></a> (affected by the computation rules of
@@ -345,517 +346,517 @@ the main feature).</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="constants">
+</section>
+<section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="api-version">
+<section id="api-version">
 <h3>API version<a class="headerlink" href="#api-version" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.LIBSENSORS_VERSION">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">LIBSENSORS_VERSION</span></code><a class="headerlink" href="#sensors.LIBSENSORS_VERSION" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.LIBSENSORS_VERSION">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">LIBSENSORS_VERSION</span></span><a class="headerlink" href="#sensors.LIBSENSORS_VERSION" title="Permalink to this definition">¶</a></dt>
 <dd><p>A string describing the libsensors version, e.g. <code class="docutils literal notranslate"><span class="pre">'3.3.1'</span></code>.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.API_VERSION">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">API_VERSION</span></code><a class="headerlink" href="#sensors.API_VERSION" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.API_VERSION">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">API_VERSION</span></span><a class="headerlink" href="#sensors.API_VERSION" title="Permalink to this definition">¶</a></dt>
 <dd><p>A number whose digits, in hexadecimal, represent the API
 version. The first digit is the major version (large changes that
 break the compatibility), the second one is for large changes, the
 third one is for small additions.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="bus-numbers">
+</section>
+<section id="bus-numbers">
 <h3>Bus numbers<a class="headerlink" href="#bus-numbers" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.BUS_NR_ANY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_NR_ANY</span></code><a class="headerlink" href="#sensors.BUS_NR_ANY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_NR_ANY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_NR_ANY</span></span><a class="headerlink" href="#sensors.BUS_NR_ANY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_NR_IGNORE">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_NR_IGNORE</span></code><a class="headerlink" href="#sensors.BUS_NR_IGNORE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_NR_IGNORE">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_NR_IGNORE</span></span><a class="headerlink" href="#sensors.BUS_NR_IGNORE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="bus-types">
+</section>
+<section id="bus-types">
 <h3>Bus types<a class="headerlink" href="#bus-types" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_ACPI">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_ACPI</span></code><a class="headerlink" href="#sensors.BUS_TYPE_ACPI" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_ACPI">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_ACPI</span></span><a class="headerlink" href="#sensors.BUS_TYPE_ACPI" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_ANY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_ANY</span></code><a class="headerlink" href="#sensors.BUS_TYPE_ANY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_ANY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_ANY</span></span><a class="headerlink" href="#sensors.BUS_TYPE_ANY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_HID">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_HID</span></code><a class="headerlink" href="#sensors.BUS_TYPE_HID" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_HID">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_HID</span></span><a class="headerlink" href="#sensors.BUS_TYPE_HID" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_I2C">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_I2C</span></code><a class="headerlink" href="#sensors.BUS_TYPE_I2C" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_I2C">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_I2C</span></span><a class="headerlink" href="#sensors.BUS_TYPE_I2C" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_ISA">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_ISA</span></code><a class="headerlink" href="#sensors.BUS_TYPE_ISA" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_ISA">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_ISA</span></span><a class="headerlink" href="#sensors.BUS_TYPE_ISA" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_PCI">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_PCI</span></code><a class="headerlink" href="#sensors.BUS_TYPE_PCI" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_PCI">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_PCI</span></span><a class="headerlink" href="#sensors.BUS_TYPE_PCI" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_SPI">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_SPI</span></code><a class="headerlink" href="#sensors.BUS_TYPE_SPI" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_SPI">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_SPI</span></span><a class="headerlink" href="#sensors.BUS_TYPE_SPI" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.BUS_TYPE_VIRTUAL">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">BUS_TYPE_VIRTUAL</span></code><a class="headerlink" href="#sensors.BUS_TYPE_VIRTUAL" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.BUS_TYPE_VIRTUAL">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">BUS_TYPE_VIRTUAL</span></span><a class="headerlink" href="#sensors.BUS_TYPE_VIRTUAL" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="chip-names-wilcards">
+</section>
+<section id="chip-names-wilcards">
 <h3>Chip names wilcards<a class="headerlink" href="#chip-names-wilcards" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.CHIP_NAME_ADDR_ANY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">CHIP_NAME_ADDR_ANY</span></code><a class="headerlink" href="#sensors.CHIP_NAME_ADDR_ANY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.CHIP_NAME_ADDR_ANY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">CHIP_NAME_ADDR_ANY</span></span><a class="headerlink" href="#sensors.CHIP_NAME_ADDR_ANY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.CHIP_NAME_PREFIX_ANY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">CHIP_NAME_PREFIX_ANY</span></code><a class="headerlink" href="#sensors.CHIP_NAME_PREFIX_ANY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.CHIP_NAME_PREFIX_ANY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">CHIP_NAME_PREFIX_ANY</span></span><a class="headerlink" href="#sensors.CHIP_NAME_PREFIX_ANY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="features">
+</section>
+<section id="features">
 <span id="features-constants"></span><h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.FEATURE_BEEP_ENABLE">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_BEEP_ENABLE</span></code><a class="headerlink" href="#sensors.FEATURE_BEEP_ENABLE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_BEEP_ENABLE">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_BEEP_ENABLE</span></span><a class="headerlink" href="#sensors.FEATURE_BEEP_ENABLE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_CURR">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_CURR</span></code><a class="headerlink" href="#sensors.FEATURE_CURR" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_CURR">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_CURR</span></span><a class="headerlink" href="#sensors.FEATURE_CURR" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_ENERGY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_ENERGY</span></code><a class="headerlink" href="#sensors.FEATURE_ENERGY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_ENERGY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_ENERGY</span></span><a class="headerlink" href="#sensors.FEATURE_ENERGY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_FAN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_FAN</span></code><a class="headerlink" href="#sensors.FEATURE_FAN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_FAN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_FAN</span></span><a class="headerlink" href="#sensors.FEATURE_FAN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_HUMIDITY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_HUMIDITY</span></code><a class="headerlink" href="#sensors.FEATURE_HUMIDITY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_HUMIDITY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_HUMIDITY</span></span><a class="headerlink" href="#sensors.FEATURE_HUMIDITY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_IN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_IN</span></code><a class="headerlink" href="#sensors.FEATURE_IN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_IN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_IN</span></span><a class="headerlink" href="#sensors.FEATURE_IN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_INTRUSION">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_INTRUSION</span></code><a class="headerlink" href="#sensors.FEATURE_INTRUSION" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_INTRUSION">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_INTRUSION</span></span><a class="headerlink" href="#sensors.FEATURE_INTRUSION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_MAX_MAIN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_MAX_MAIN</span></code><a class="headerlink" href="#sensors.FEATURE_MAX_MAIN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_MAX_MAIN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_MAX_MAIN</span></span><a class="headerlink" href="#sensors.FEATURE_MAX_MAIN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_MAX_OTHER">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_MAX_OTHER</span></code><a class="headerlink" href="#sensors.FEATURE_MAX_OTHER" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_MAX_OTHER">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_MAX_OTHER</span></span><a class="headerlink" href="#sensors.FEATURE_MAX_OTHER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_POWER">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_POWER</span></code><a class="headerlink" href="#sensors.FEATURE_POWER" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_POWER">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_POWER</span></span><a class="headerlink" href="#sensors.FEATURE_POWER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_TEMP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_TEMP</span></code><a class="headerlink" href="#sensors.FEATURE_TEMP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_TEMP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_TEMP</span></span><a class="headerlink" href="#sensors.FEATURE_TEMP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_UNKNOWN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_UNKNOWN</span></code><a class="headerlink" href="#sensors.FEATURE_UNKNOWN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_UNKNOWN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_UNKNOWN</span></span><a class="headerlink" href="#sensors.FEATURE_UNKNOWN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.FEATURE_VID">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">FEATURE_VID</span></code><a class="headerlink" href="#sensors.FEATURE_VID" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.FEATURE_VID">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">FEATURE_VID</span></span><a class="headerlink" href="#sensors.FEATURE_VID" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="constants-used-in-subfeature-flags">
+</section>
+<section id="constants-used-in-subfeature-flags">
 <h3>Constants used in <a class="reference internal" href="#sensors.Subfeature.flags" title="sensors.Subfeature.flags"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Subfeature.flags</span></code></a><a class="headerlink" href="#constants-used-in-subfeature-flags" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.MODE_R">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">MODE_R</span></code><a class="headerlink" href="#sensors.MODE_R" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.MODE_R">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">MODE_R</span></span><a class="headerlink" href="#sensors.MODE_R" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.MODE_W">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">MODE_W</span></code><a class="headerlink" href="#sensors.MODE_W" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.MODE_W">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">MODE_W</span></span><a class="headerlink" href="#sensors.MODE_W" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.COMPUTE_MAPPING">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">COMPUTE_MAPPING</span></code><a class="headerlink" href="#sensors.COMPUTE_MAPPING" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.COMPUTE_MAPPING">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">COMPUTE_MAPPING</span></span><a class="headerlink" href="#sensors.COMPUTE_MAPPING" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="subfeatures">
+</section>
+<section id="subfeatures">
 <span id="subfeatures-constants"></span><h3>Subfeatures<a class="headerlink" href="#subfeatures" title="Permalink to this headline">¶</a></h3>
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_BEEP_ENABLE">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_BEEP_ENABLE</span></code><a class="headerlink" href="#sensors.SUBFEATURE_BEEP_ENABLE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_BEEP_ENABLE">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_BEEP_ENABLE</span></span><a class="headerlink" href="#sensors.SUBFEATURE_BEEP_ENABLE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_BEEP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_BEEP</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_BEEP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_BEEP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_BEEP</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_BEEP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_CRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_CRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_CRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_CRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_CRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_CRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_CRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_CRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_CRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_CRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_LCRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_LCRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_LCRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_LCRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_LCRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_LCRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_LCRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_LCRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_LCRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_LCRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_LCRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_LCRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_MAX">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MAX</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MAX" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_MAX">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MAX</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MAX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_MAX_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MAX_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_MAX_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MAX_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_MIN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MIN</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MIN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_MIN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MIN</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MIN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_CURR_MIN_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MIN_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MIN_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_CURR_MIN_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_CURR_MIN_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_CURR_MIN_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_ENERGY_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_ENERGY_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_ENERGY_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_ENERGY_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_ENERGY_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_ENERGY_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_BEEP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_BEEP</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_BEEP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_BEEP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_BEEP</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_BEEP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_DIV">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_DIV</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_DIV" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_DIV">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_DIV</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_DIV" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_FAULT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_FAULT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_FAULT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_FAULT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_FAULT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_FAULT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_MIN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_MIN</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_MIN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_MIN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_MIN</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_MIN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_FAN_PULSES">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_FAN_PULSES</span></code><a class="headerlink" href="#sensors.SUBFEATURE_FAN_PULSES" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_FAN_PULSES">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_FAN_PULSES</span></span><a class="headerlink" href="#sensors.SUBFEATURE_FAN_PULSES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_HUMIDITY_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_HUMIDITY_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_HUMIDITY_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_HUMIDITY_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_HUMIDITY_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_HUMIDITY_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_INTRUSION_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_INTRUSION_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_INTRUSION_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_INTRUSION_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_INTRUSION_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_INTRUSION_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_INTRUSION_BEEP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_INTRUSION_BEEP</span></code><a class="headerlink" href="#sensors.SUBFEATURE_INTRUSION_BEEP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_INTRUSION_BEEP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_INTRUSION_BEEP</span></span><a class="headerlink" href="#sensors.SUBFEATURE_INTRUSION_BEEP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_BEEP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_BEEP</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_BEEP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_BEEP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_BEEP</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_BEEP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_CRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_CRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_CRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_CRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_CRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_CRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_CRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_CRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_CRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_CRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_LCRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_LCRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_LCRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_LCRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_LCRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_LCRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_LCRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_LCRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_LCRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_LCRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_LCRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_LCRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_MAX">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_MAX</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_MAX" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_MAX">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_MAX</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_MAX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_MAX_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_MAX_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_MAX_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_MAX_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_MIN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_MIN</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_MIN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_MIN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_MIN</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_MIN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_IN_MIN_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_IN_MIN_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_IN_MIN_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_IN_MIN_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_IN_MIN_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_IN_MIN_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_AVERAGE">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_AVERAGE</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_AVERAGE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_AVERAGE">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_AVERAGE</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_AVERAGE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_AVERAGE_HIGHEST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_AVERAGE_HIGHEST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_AVERAGE_HIGHEST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_AVERAGE_HIGHEST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_AVERAGE_HIGHEST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_AVERAGE_HIGHEST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_AVERAGE_LOWEST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_AVERAGE_LOWEST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_AVERAGE_LOWEST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_AVERAGE_LOWEST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_AVERAGE_LOWEST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_AVERAGE_LOWEST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_CAP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CAP</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CAP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_CAP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CAP</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CAP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_CAP_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CAP_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CAP_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_CAP_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CAP_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CAP_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_CAP_HYST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CAP_HYST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CAP_HYST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_CAP_HYST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CAP_HYST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CAP_HYST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_CRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_CRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_CRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_CRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_CRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_INPUT_HIGHEST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_INPUT_HIGHEST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_INPUT_HIGHEST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_INPUT_HIGHEST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_INPUT_HIGHEST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_INPUT_HIGHEST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_INPUT_LOWEST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_INPUT_LOWEST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_INPUT_LOWEST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_INPUT_LOWEST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_INPUT_LOWEST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_INPUT_LOWEST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_MAX">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_MAX</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_MAX" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_MAX">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_MAX</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_MAX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_POWER_MAX_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_POWER_MAX_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_POWER_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_POWER_MAX_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_POWER_MAX_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_POWER_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_BEEP">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_BEEP</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_BEEP" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_BEEP">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_BEEP</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_BEEP" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_CRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_CRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_CRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_CRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_CRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_CRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_CRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_CRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_CRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_CRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_CRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_CRIT_HYST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_CRIT_HYST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_CRIT_HYST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_CRIT_HYST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_CRIT_HYST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_CRIT_HYST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_EMERGENCY">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_EMERGENCY</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_EMERGENCY" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_EMERGENCY">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_EMERGENCY</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_EMERGENCY" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_EMERGENCY_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_EMERGENCY_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_EMERGENCY_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_EMERGENCY_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_EMERGENCY_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_EMERGENCY_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_EMERGENCY_HYST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_EMERGENCY_HYST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_EMERGENCY_HYST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_EMERGENCY_HYST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_EMERGENCY_HYST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_EMERGENCY_HYST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_FAULT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_FAULT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_FAULT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_FAULT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_FAULT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_FAULT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_INPUT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_INPUT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_INPUT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_INPUT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_INPUT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_INPUT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_LCRIT">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_LCRIT</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_LCRIT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_LCRIT">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_LCRIT</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_LCRIT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_LCRIT_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_LCRIT_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_LCRIT_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_LCRIT_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_LCRIT_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_LCRIT_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_MAX">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MAX</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MAX" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_MAX">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MAX</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MAX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_MAX_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MAX_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_MAX_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MAX_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MAX_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_MAX_HYST">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MAX_HYST</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MAX_HYST" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_MAX_HYST">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MAX_HYST</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MAX_HYST" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_MIN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MIN</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MIN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_MIN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MIN</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MIN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_MIN_ALARM">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MIN_ALARM</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MIN_ALARM" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_MIN_ALARM">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_MIN_ALARM</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_MIN_ALARM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_OFFSET">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_OFFSET</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_OFFSET">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_OFFSET</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_OFFSET" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_TEMP_TYPE">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_TYPE</span></code><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_TYPE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_TEMP_TYPE">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_TEMP_TYPE</span></span><a class="headerlink" href="#sensors.SUBFEATURE_TEMP_TYPE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_UNKNOWN">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_UNKNOWN</span></code><a class="headerlink" href="#sensors.SUBFEATURE_UNKNOWN" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_UNKNOWN">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_UNKNOWN</span></span><a class="headerlink" href="#sensors.SUBFEATURE_UNKNOWN" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sensors.SUBFEATURE_VID">
-<code class="sig-prename descclassname"><span class="pre">sensors.</span></code><code class="sig-name descname"><span class="pre">SUBFEATURE_VID</span></code><a class="headerlink" href="#sensors.SUBFEATURE_VID" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="sensors.SUBFEATURE_VID">
+<span class="sig-prename descclassname"><span class="pre">sensors.</span></span><span class="sig-name descname"><span class="pre">SUBFEATURE_VID</span></span><a class="headerlink" href="#sensors.SUBFEATURE_VID" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -901,7 +902,7 @@ third one is for small additions.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -932,7 +933,7 @@ third one is for small additions.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Bastien Léonard.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
   </body>
 </html>

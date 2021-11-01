@@ -42,8 +42,6 @@ you can get or set information such as the speed of the fans or
 hardware temperature on Linux systems. This is actually a binding for
 libsensors, the C API from the lm_sensors project.
 
-Python 3 is supported but still experimental.
-
 Go to the project's page to get the source, report issues and more:
 https://github.com/bastienleonard/pysensors
 
