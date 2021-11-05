@@ -1,7 +1,7 @@
-#! /usr/bin/env python2
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2011 Bastien Léonard. All rights reserved.
+# Copyright 2011, 2021 Bastien Léonard. All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -35,15 +35,20 @@ import sensors
 
 def print_stuff():
     for chip in sensors.get_detected_chips():
-        print chip
+        print(chip)
 
         for feature in chip.get_features():
-            print ' ', chip.get_label(feature)
+            print('  {0}'.format(chip.get_label(feature)))
 
             for subfeature in chip.get_all_subfeatures(feature):
-                print '   ', subfeature, chip.get_value(subfeature.number)
+                print(
+                    '  {0:8} {1}'.format(
+                        chip.get_value_or_none(subfeature.number),
+                        subfeature
+                    )
+                )
 
-            print
+            print()
 
 def main():
     print_stuff()
