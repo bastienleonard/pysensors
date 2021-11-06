@@ -1,1 +1,8 @@
-include src/*.h
+include setup.py README.md LICENSE.txt
+recursive-include src *.py *.c *.h
+recursive-include tests *.py
+recursive-include examples *.py
+include doc/source/*.rst
+include doc/source/conf.py
+include doc/Makefile
+include doc/make.bat
