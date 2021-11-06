@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright 2011 Bastien Léonard. All rights reserved.
+# Copyright 2011, 2021 Bastien Léonard. All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -27,6 +27,8 @@
 # OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
+import glob
+
 from distutils.core import setup, Extension
 import distutils.ccompiler
 
@@ -47,8 +49,7 @@ if COMPILER_IS_GCC:
         extra_compiler_args.extend('-g -ggdb'.split())
 
 module = Extension('sensors',
-                   sources = ['sensorsmodule.c', 'chipname.c', 'feature.c',
-                              'subfeature.c', 'utils.c'],
+                   sources=glob.glob('src/*.c'),
                    libraries=['sensors'],
                    extra_compile_args=extra_compiler_args,
                    extra_link_args=extra_linker_args)
