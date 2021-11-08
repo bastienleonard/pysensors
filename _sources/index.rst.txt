@@ -1,4 +1,4 @@
-.. Copyright 2011, 2015, 2016 Bastien Léonard. All rights reserved.
+.. Copyright 2011, 2015, 2016, 2021 Bastien Léonard. All rights reserved.
 
 .. Redistribution and use in source (reStructuredText) and 'compiled'
    forms (HTML, PDF, PostScript, RTF and so forth) with or without
@@ -36,16 +36,25 @@
 Welcome to pySensors's documentation!
 =====================================
 
-This binding allows you to easily access the `lm_sensors
-<http://lm-sensors.org>`_ features from your Python programs, so that
-you can get or set information such as the speed of the fans or
-hardware temperature on Linux systems. This is actually a binding for
-libsensors, the C API from the lm_sensors project.
+Easily control your hardware sensors (temperature, fan speed, etc.) with a
+simple Python API.
 
 Go to the project's page to get the source, report issues and more:
 https://github.com/bastienleonard/pysensors
 
-Contents:
+The lm_sensors C library
+------------------------
+
+This is really a binding for the lm_sensors C library. Its
+`official homepage <http://lm-sensors.org>`_ has been unavailable for a while,
+but you can still find extensive information from those links:
+
+* `Arch Linux wiki page <https://wiki.archlinux.org/title/Lm_sensors>`_
+* `GitHub project <https://github.com/lm-sensors/lm-sensors>`_
+* `Copy of the old homepage <https://hwmon.wiki.kernel.org/lm_sensors>`_
+
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
