@@ -33,22 +33,16 @@ from distutils.core import setup, Extension
 import distutils.ccompiler
 
 
-COMPILER_IS_GCC = True
-DEBUG = False
+EXTRA_COMPILE_ARGS = [
+    '-Wall',
+    '-Wextra',
+    '-Wno-missing-field-initializers',
+    '-pedantic',
+    '-std=c99',
+    '-fvisibility=hidden'
+]
+EXTRA_LINK_ARGS = ['-fvisibility=hidden']
 
-extra_compiler_args = []
-extra_linker_args = []
-
-if COMPILER_IS_GCC:
-    extra_compiler_args.extend(
-        ('-Wall -Wextra -Wno-missing-field-initializers '
-         '-pedantic -std=c99 -fvisibility=hidden')
-        .split()
-    )
-    extra_linker_args.extend('-fvisibility=hidden'.split())
-
-    if DEBUG:
-        extra_compiler_args.extend('-g -ggdb'.split())
 
 with open('README.md') as f:
     long_description = f.read()
@@ -79,8 +73,8 @@ setup(
             'sensors',
             sources=glob.glob('src/*.c'),
             libraries=['sensors'],
-            extra_compile_args=extra_compiler_args,
-            extra_link_args=extra_linker_args
+            extra_compile_args=EXTRA_COMPILE_ARGS,
+            extra_link_args=EXTRA_LINK_ARGS
         )
     ]
 )
