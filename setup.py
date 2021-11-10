@@ -54,7 +54,30 @@ module = Extension('sensors',
                    extra_compile_args=extra_compiler_args,
                    extra_link_args=extra_linker_args)
 
+
+with open('README.md') as f:
+    long_description = f.read()
+
+print(long_description)
+
 setup(name = 'sensors',
       version = '0.1',
-      description = 'Python binding for libsensors',
+      description = 'Python binding for lm_sensors (Linux monitoring sensors)',
+      long_description = long_description,
+      long_description_content_type='text/markdown',
+      url = 'https://github.com/bastienleonard/pysensors',
+      author = 'Bastien Léonard',
+      author_email = 'bastien.leonard@gmail.com',
+      license = 'BSD',
+      platforms = [
+          'Linux'
+      ],
+      classifiers = [
+          'License :: OSI Approved :: BSD License',
+          'Operating System :: POSIX :: Linux',
+          'Programming Language :: Python :: 2',
+          'Programming Language :: Python :: 3',
+          'Topic :: System :: Hardware',
+          'Topic :: System :: Monitoring'
+      ],
       ext_modules = [module])
